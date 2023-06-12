@@ -132,6 +132,7 @@
     sqlitebrowser
     wineWowPackages.staging
     winetricks
+    grapejuice
     lutris
     (lutris.override {
       extraLibraries = pkgs: [
