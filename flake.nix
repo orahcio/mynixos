@@ -2,17 +2,17 @@
   description = "Configuração do NixOS de Orahcio";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-stable, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }:
   let
   	system = "x86_64-linux";
 	pkgs = import nixpkgs {inherit system;};
-	stable = import nixpkgs-stable {inherit system;};
+	unstable = import nixpkgs-unstable {inherit system;};
   in	
   {
     nixosConfigurations = {
@@ -24,7 +24,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit stable; };
+            home-manager.extraSpecialArgs = { inherit unstable; };
             home-manager.users.orahcio = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass

@@ -1,4 +1,4 @@
-{ pkgs, stable, ... }:
+{ pkgs, unstable, ... }:
 
 {
 
@@ -33,7 +33,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   # Since we do not install home-manager, you need to let home-manager
   # manage your shell, otherwise it will not be able to add its hooks
@@ -80,7 +80,7 @@
   };
 
   home.packages = with pkgs; [
-    (stable.texlive.combine { inherit (stable.texlive)
+    (unstable.texlive.combine { inherit (unstable.texlive)
       scheme-small
       standalone
       varwidth
@@ -91,7 +91,7 @@
       lualatex-math
       siunitx
       l3kernel
-      # gensymb
+      gensymb
       comment
       tcolorbox # usada no pandoc pra converter .ipynb
       environ # pandoc idem
