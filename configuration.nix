@@ -202,8 +202,8 @@
 
   # Enable automatic login for the user.
   services.xserver.displayManager.defaultSession = "plasmawayland";
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "orahcio";
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "orahcio";
 
   nix.gc = {
     automatic =true;
