@@ -116,7 +116,11 @@
     libsForQt5.kasts
     libsForQt5.neochat
     qutebrowser
-    tor-browser-bundle-bin
+    tor-browser-bundle-b
+    xournalpp
+    inkscape
+    gimp
+    krita
     (python3.withPackages(ps: with ps; [
       setuptools
       cython

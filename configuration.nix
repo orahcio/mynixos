@@ -130,6 +130,7 @@
     vlc
     ffmpeg
     sqlitebrowser
+    corefonts
     wineWowPackages.staging
     winetricks
     grapejuice
@@ -144,10 +145,6 @@
         wine-staging gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
       ];
     })
-    xournalpp
-    inkscape
-    gimp
-    krita
     kdenlive
     mediainfo
     filelight
