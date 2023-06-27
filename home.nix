@@ -116,7 +116,7 @@
     libsForQt5.kasts
     libsForQt5.neochat
     qutebrowser
-    tor-browser-bundle-b
+    tor-browser-bundle-bin
     xournalpp
     inkscape
     gimp
