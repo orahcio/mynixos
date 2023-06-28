@@ -140,6 +140,7 @@
     gimp
     krita
     gImageReader
+    kitty
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
