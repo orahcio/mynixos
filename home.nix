@@ -39,9 +39,25 @@
   # manage your shell, otherwise it will not be able to add its hooks
   # to your profile.
   programs.home-manager.enable = true;
+  
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+  
   programs.bash.enable = true;
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      # Use kitty as default terminal
+      terminal = "kitty"; 
+      startup = [
+        # Launch Firefox on start
+        {command = "firefox";}
+      ];
+    };
+  };
+
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
@@ -57,6 +73,7 @@
       grapecity.gc-excelviewer
     ];
   };
+  
   programs.git = {
     enable = true;
     userName = "orahcio";
@@ -70,6 +87,7 @@
   #     set mouse=a
   #   '';
   # };
+  
   programs.neovim = {
     enable = true;
     viAlias = true;
