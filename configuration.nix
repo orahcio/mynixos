@@ -131,8 +131,13 @@
     ffmpeg
     sqlitebrowser
     corefonts
-    grapejuice
-    lutris
+    wineWowPackages.staging
+    winetricks
+    (grapejuice.override {
+      extraPkgs = pkgs: [
+        wineWowPackages.staging winetricks
+      ];
+    })
     (lutris.override {
       extraLibraries = pkgs: [
         giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
@@ -140,7 +145,7 @@
     })
     (lutris.override {
       extraPkgs = pkgs: [
-        wine-staging gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
+        wineWowPackages.staging winetricks wine-staging gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
       ];
     })
     kdenlive
