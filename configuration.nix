@@ -131,7 +131,7 @@
     ffmpeg
     sqlitebrowser
     corefonts
-    wine
+    wineWowPackages.stable
     grapejuice
     (lutris.override {
       extraLibraries = pkgs: [
