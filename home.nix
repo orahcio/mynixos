@@ -135,6 +135,7 @@
     libsForQt5.neochat
     qutebrowser
     tor-browser-bundle-bin
+    google-chrome
     xournalpp
     inkscape
     gimp
