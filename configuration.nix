@@ -131,8 +131,6 @@
     ffmpeg
     sqlitebrowser
     corefonts
-    wineWowPackages.stable
-    grapejuice
     (lutris.override {
       extraLibraries = pkgs: [
         giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
