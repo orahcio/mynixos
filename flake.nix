@@ -11,8 +11,14 @@
   outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }:
   let
   	system = "x86_64-linux";
-	pkgs = import nixpkgs {inherit system;};
-	unstable = import nixpkgs-unstable {inherit system;};
+	pkgs = import nixpkgs {
+		inherit system;
+		config.allowUnfree = true;
+	};
+	unstable = import nixpkgs-unstable {
+		inherit system;
+		config.allowUnfree = true;
+	};
   in	
   {
     nixosConfigurations = {

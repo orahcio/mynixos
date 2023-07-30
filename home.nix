@@ -60,18 +60,19 @@
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-      yzhang.markdown-all-in-one
-      ms-python.python
-      ms-toolsai.jupyter
-      ms-ceintl.vscode-language-pack-pt-br
-      github.vscode-pull-request-github
-      arrterian.nix-env-selector
-      bungcip.better-toml
-      grapecity.gc-excelviewer
-    ];
+    package = unstable.vscode.fhs;
+    # extensions = with pkgs.vscode-extensions; [
+    #   dracula-theme.theme-dracula
+    #   vscodevim.vim
+    #   yzhang.markdown-all-in-one
+    #   ms-python.python
+    #   ms-toolsai.jupyter
+    #   ms-ceintl.vscode-language-pack-pt-br
+    #   github.vscode-pull-request-github
+    #   arrterian.nix-env-selector
+    #   bungcip.better-toml
+    #   grapecity.gc-excelviewer
+    # ];
   };
   
   programs.git = {
