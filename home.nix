@@ -134,6 +134,7 @@
     libsForQt5.kruler
     libsForQt5.kasts
     libsForQt5.neochat
+    libsForQt5.kcalc
     qutebrowser
     tor-browser-bundle-bin
     google-chrome
