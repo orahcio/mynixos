@@ -111,6 +111,7 @@
       siunitx
       l3kernel
       gensymb
+      cancel
       comment
       tcolorbox # usada no pandoc pra converter .ipynb
       environ # pandoc idem
