@@ -131,6 +131,7 @@
       biber;
     })
     kile
+    lyx
     libsForQt5.kruler
     libsForQt5.kasts
     libsForQt5.neochat

@@ -108,6 +108,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  programs.java = { enable = true; package = pkgs.openjdk19; };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
