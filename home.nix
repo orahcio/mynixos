@@ -146,6 +146,7 @@
     krita
     gImageReader
     kitty
+    zoom-us
     (python3.withPackages(ps: with ps; [
       setuptools
       cython

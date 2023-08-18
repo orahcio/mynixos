@@ -120,6 +120,7 @@
     tarlz unzip gzip unrar bzip2 p7zip binutils-unwrapped-all-targets
     neofetch
     killall
+    bc
     kup
     bup
     firefox
