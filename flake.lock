@@ -7,50 +7,41 @@
         ]
       },
       "locked": {
-        "lastModified": 1687871164,
-        "narHash": "sha256-bBFlPthuYX322xOlpJvkjUBz0C+MOBjZdDOOJJ+G2jU=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "07c347bb50994691d7b0095f45ebd8838cf6bc38",
-        "type": "github"
+        "narHash": "sha256-yXhiMo8MnE86sGtPIHAKaLHhmhe8v9tqGGotlUgKJvY=",
+        "rev": "f5c15668f9842dd4d5430787d6aa8a28a07f7c10",
+        "revCount": 2984,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.2984+rev-f5c15668f9842dd4d5430787d6aa8a28a07f7c10/018a4781-f139-760c-a436-6e80aeeb7ded/source.tar.gz"
       },
       "original": {
-        "owner": "nix-community",
-        "ref": "release-23.05",
-        "repo": "home-manager",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/home-manager/0.1.2984.tar.gz"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1691592289,
-        "narHash": "sha256-Lqpw7lrXlLkYra33tp57ms8tZ0StWhbcl80vk4D90F8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9034b46dc4c7596a87ab837bb8a07ef2d887e8c7",
-        "type": "github"
+        "narHash": "sha256-wrsPjsIx2767909MPGhSIOmkpGELM9eufqLQOPxmZQg=",
+        "rev": "2ab91c8d65c00fd22a441c69bbf1bc9b420d5ea1",
+        "revCount": 490449,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2305.490449+rev-2ab91c8d65c00fd22a441c69bbf1bc9b420d5ea1/018a4782-1dd0-718a-9fb5-ccbea124615a/source.tar.gz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.05",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1691654369,
-        "narHash": "sha256-gSILTEx1jRaJjwZxRlnu3ZwMn1FVNk80qlwiCX8kmpo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ce5e4a6ef2e59d89a971bc434ca8ca222b9c7f5e",
-        "type": "github"
+        "narHash": "sha256-vYGY9bnqEeIncNarDZYhm6KdLKgXMS+HA2mTRaWEc80=",
+        "rev": "e7f38be3775bab9659575f192ece011c033655f0",
+        "revCount": 520402,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.520402+rev-e7f38be3775bab9659575f192ece011c033655f0/018a4782-1535-78fe-b7a3-9761443242b9/source.tar.gz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz"
       }
     },
     "root": {

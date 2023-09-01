@@ -2,10 +2,10 @@
   description = "Configuração do NixOS de Orahcio";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
+    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.2984.tar.gz";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nixpkgs-unstable, ... }:
