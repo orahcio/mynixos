@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -33,7 +33,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   # Since we do not install home-manager, you need to let home-manager
   # manage your shell, otherwise it will not be able to add its hooks
@@ -60,7 +60,7 @@
 
   programs.vscode = {
     enable = true;
-    package = unstable.vscode.fhs;
+    package = pkgs.vscode.fhs;
     # extensions = with pkgs.vscode-extensions; [
     #   dracula-theme.theme-dracula
     #   vscodevim.vim
@@ -99,7 +99,7 @@
   };
 
   home.packages = with pkgs; [
-    (unstable.texlive.combine { inherit (unstable.texlive)
+    (texlive.combine { inherit (texlive)
       scheme-small
       standalone
       varwidth
@@ -147,6 +147,7 @@
     gImageReader
     kitty
     zoom-us
+    poppler_utils
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
