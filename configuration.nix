@@ -124,7 +124,6 @@
     kup
     bup
     firefox
-    mailspring
     microsoft-edge
     tdesktop
     ark
