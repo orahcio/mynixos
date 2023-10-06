@@ -121,6 +121,7 @@
       adjustbox # pandoc
       collectbox # pandoc
       abntex2
+      nomencl
       wrapfig
       enumitem
       lastpage
