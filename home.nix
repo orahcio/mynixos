@@ -121,7 +121,7 @@
       adjustbox # pandoc
       collectbox # pandoc
       abntex2
-      nomencl
+      nomencl # usado no article do abntex2
       wrapfig
       enumitem
       lastpage
