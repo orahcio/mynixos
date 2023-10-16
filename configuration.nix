@@ -162,7 +162,6 @@
     obs-studio
     arduino-cli
     appimage-run
-    vmware-workstation
   ];
 
   programs.steam = {
