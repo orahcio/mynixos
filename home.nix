@@ -102,13 +102,16 @@
     (texlive.combine { inherit (texlive)
       scheme-small
       standalone
+      preview
       varwidth
       scontents
       ucs
       units
+      physics
       unicode-math
       lualatex-math
       siunitx
+      mathpazo
       l3kernel
       gensymb
       cancel
@@ -123,6 +126,8 @@
       abntex2
       nomencl # usado no article do abntex2
       wrapfig
+      sidecap
+      subfigure
       enumitem
       lastpage
       lipsum
