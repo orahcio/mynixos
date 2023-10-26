@@ -146,7 +146,6 @@
     mediainfo
     filelight
     layan-kde
-    zotero
     libreoffice-qt
     hunspell
     hunspellDicts.en_US

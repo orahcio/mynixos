@@ -156,6 +156,7 @@
     gImageReader
     kitty
     zoom-us
+    jabref
     poppler_utils
     (python3.withPackages(ps: with ps; [
       setuptools
