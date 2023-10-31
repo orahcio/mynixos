@@ -98,6 +98,10 @@
     '';
   };
 
+  programs.firefox = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     (texlive.combine { inherit (texlive)
       scheme-small
@@ -158,6 +162,7 @@
     zoom-us
     jabref
     poppler_utils
+    manim
     (python3.withPackages(ps: with ps; [
       setuptools
       cython

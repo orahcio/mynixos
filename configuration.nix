@@ -123,7 +123,6 @@
     bc
     kup
     bup
-    firefox
     microsoft-edge
     tdesktop
     ark
@@ -176,8 +175,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
   # Virtualbox
   virtualisation.virtualbox.host.enable = true;
