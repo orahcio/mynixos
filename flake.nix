@@ -2,8 +2,8 @@
   description = "Configuração do NixOS de Orahcio";
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
-    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.2984.tar.gz";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
+    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.2311.3137.tar.gz";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
   };
