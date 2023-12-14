@@ -163,6 +163,7 @@
     jabref
     poppler_utils
     manim
+    labplot
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
