@@ -56,8 +56,48 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-  hardware.opengl.driSupport32Bit = true;
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ]; # "modesetting"
+
+  hardware.nvidia = {
+    
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+    open = false;
+
+    # Enable the Nvidia settings menu,
+	  # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+
+    prime = {
+		  nvidiaBusId = "PCI:1:0:0";
+		  intelBusId = "PCI:0:2:0";
+    };
+  };
+
   hardware.opentabletdriver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
@@ -128,7 +168,7 @@
     bc
     kup
     bup
-    microsoft-edge
+    lshw
     tdesktop
     ark
     megasync
@@ -161,6 +201,13 @@
     libsForQt5.kate
     libsForQt5.falkon
     libsForQt5.kdegraphics-thumbnailers    
+    libsForQt5.kruler
+    libsForQt5.kasts
+    libsForQt5.neochat
+    libsForQt5.kcalc
+    libsForQt5.kontact
+    libsForQt5.kmail
+    libsForQt5.akonadi
     pdfarranger
     obs-studio
     arduino-cli
@@ -187,6 +234,8 @@
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.x11 = true;
+
+  virtualisation.waydroid.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.orahcio = {

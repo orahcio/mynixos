@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, stable, ... }:
 
 {
 
@@ -102,7 +102,7 @@
     enable = true;
   };
 
-  home.packages = with pkgs; [
+  home.packages = with stable; [
     (texlive.combine { inherit (texlive)
       scheme-small
       standalone
@@ -124,7 +124,7 @@
       environ # pandoc idem
       pdfcolmk # pandoc
       titling # pandoc
-      rsfs # pandoc
+      rsfs # pandoc24.05
       adjustbox # pandoc
       collectbox # pandoc
       abntex2
@@ -143,16 +143,10 @@
     })
     kile
     lyx
-    libsForQt5.kruler
-    libsForQt5.kasts
-    libsForQt5.neochat
-    libsForQt5.kcalc
-    libsForQt5.kontact
-    libsForQt5.kmail
-    libsForQt5.akonadi
     qutebrowser
     tor-browser-bundle-bin
     google-chrome
+    microsoft-edge
     xournalpp
     inkscape
     gimp
