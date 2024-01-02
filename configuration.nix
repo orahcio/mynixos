@@ -235,7 +235,9 @@
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.x11 = true;
 
-  virtualisation.waydroid.enable = true;
+  # Virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.orahcio = {
@@ -244,11 +246,7 @@
     extraGroups = [ "networkmanager" "wheel" "audio" "vboxusers" ];
   };
 
-  # Enable automatic login for the user.
-  # services.xserver.displayManager.defaultSession = "plasmawayland";
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "orahcio";
-
+  # Garbage-collect, deletar gerações mais velhas que trinta dias, semanalmente
   nix.gc = {
     automatic =true;
     dates = "weekly";

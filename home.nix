@@ -102,6 +102,13 @@
     enable = true;
   };
 
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   home.packages = with stable; [
     (texlive.combine { inherit (texlive)
       scheme-small
