@@ -208,6 +208,7 @@
     libsForQt5.kontact
     libsForQt5.kmail
     libsForQt5.akonadi
+    libsForQt5.ktorrent
     pdfarranger
     obs-studio
     arduino-cli
