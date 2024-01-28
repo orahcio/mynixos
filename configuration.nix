@@ -110,7 +110,10 @@ in
     };
   };
 
-  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true;
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.desktopManager.plasma5.enable = true;
