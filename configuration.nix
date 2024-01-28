@@ -3,7 +3,15 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
+in
 {
   imports =
     [ # Include the results of the hardware scan. # home-manager.nixosModule
@@ -71,7 +79,7 @@
     modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
@@ -90,9 +98,13 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
+      offload = {
+	      enable = true;
+	      enableOffloadCmd = true;
+	    };
 		  nvidiaBusId = "PCI:1:0:0";
 		  intelBusId = "PCI:0:2:0";
     };
@@ -238,6 +250,12 @@
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
     extraGroups = [ "networkmanager" "wheel" "audio" "vboxusers" ];
+  };
+  
+  users.users.ilana = {
+    isNormalUser = true;
+    description = "Rosa Ilana dos Santos";
+    extraGroups = ["networkmanager" "audio"];
   };
 
   # Garbage-collect, deletar gerações mais velhas que trinta dias, semanalmente
