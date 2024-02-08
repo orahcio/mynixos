@@ -165,6 +165,7 @@
     poppler_utils
     manim
     labplot
+    rclone
     rclone-browser
     (python3.withPackages(ps: with ps; [
       setuptools
