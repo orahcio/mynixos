@@ -165,8 +165,7 @@
     poppler_utils
     manim
     labplot
-    rclone
-    rclone-browser
+    google-drive-ocamlfuse
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
