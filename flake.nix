@@ -32,7 +32,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit stable; };
             home-manager.users.orahcio = import ./home.nix;
-            home-manager.users.ilana = import ./home_ilana.nix;
+            # home-manager.users.ilana = import ./home_ilana.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix

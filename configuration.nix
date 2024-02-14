@@ -255,11 +255,11 @@ in
     extraGroups = [ "networkmanager" "wheel" "audio" "vboxusers" ];
   };
   
-  users.users.ilana = {
-    isNormalUser = true;
-    description = "Rosa Ilana dos Santos";
-    extraGroups = ["networkmanager" "audio"];
-  };
+  # users.users.ilana = {
+  #   isNormalUser = true;
+  #   description = "Rosa Ilana dos Santos";
+  #   extraGroups = ["networkmanager" "audio"];
+  # };
 
   # Garbage-collect, deletar gerações mais velhas que trinta dias, semanalmente
   nix.gc = {
