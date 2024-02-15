@@ -170,21 +170,6 @@ in
   nixpkgs.config.allowUnfree = true;
   programs.java = { enable = true; package = pkgs.openjdk19; };
 
-  # Montar Googledrive com ocamfuse depois de se conectar a internet
-  # Lembrar que só faz sentido depois de configurar o google-drive-ocamfuse
-  systemd.services.orahcioDrive = {
-    # só inicia o serviço depois que fazer o login
-    wantedBy = [ "multi-user.target" ];
-    # assim que tiver online o serviço excecuta
-    after = [ "network.target" ];
-    description = "Montar meu drive pessoal assim que logar na rede";
-    serviceConfig = {
-      Type = "notify";
-      User = "orahcio";
-      ExecStart = ''${pkgs.google-drive-ocamlfuse}/bin/google-drive-ocamfuse /home/orahcio/GoogleDrive'';
-    };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.variables.EDITOR = "nvim";
