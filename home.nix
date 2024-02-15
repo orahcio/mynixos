@@ -165,7 +165,6 @@
     poppler_utils
     manim
     labplot
-    google-drive-ocamlfuse
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
