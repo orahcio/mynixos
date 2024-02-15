@@ -109,6 +109,25 @@
     };
   };
 
+  # Montar Googledrive com ocamfuse depois de se conectar a internet
+  # Lembrar que só faz sentido depois de configurar o google-drive-ocamfuse
+  systemd.user.services.orahcioDrive = {
+    # assim que tiver online o serviço excecuta
+    Unit = {
+      After = [ "network.target" ];
+      Description = "Montar meu drive pessoal assim que logar na rede";
+    };
+    Service = {
+      Type = "forking";
+      User = "orahcio";
+      ExecStart = ''${stable.google-drive-ocamlfuse}/bin/google-drive-ocamlfuse /home/orahcio/GoogleDrive'';
+      ExecStop = ''fusermount -u /home/orahcio/GoogleDrive'';
+      Restart = "always";
+    };
+    # só inicia o serviço depois que fazer o login
+    Install.WantedBy = [ "default.target" ];
+  };
+
   home.packages = with stable; [
     (texlive.combine { inherit (texlive)
       scheme-small
