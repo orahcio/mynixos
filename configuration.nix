@@ -245,7 +245,6 @@ in
     obs-studio
     arduino-cli
     appimage-run
-    google-drive-ocamlfuse
   ];
 
   programs.steam = {
