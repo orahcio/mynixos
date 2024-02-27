@@ -1,4 +1,4 @@
-{ pkgs, stable, ... }:
+{ pkgs, unstable, ... }:
 
 {
 
@@ -128,7 +128,7 @@
     Install.WantedBy = [ "default.target" ];
   };
 
-  home.packages = with stable; [
+  home.packages = with pkgs; [
     (texlive.combine { inherit (texlive)
       scheme-small
       standalone

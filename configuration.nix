@@ -21,11 +21,29 @@ in
 
 
   # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_4_19;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.plymouth.enable = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_4_19;
+    loader = {
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        # enable = true;
+        efiSupport = true;
+        device = "nodev";
+        gfxmodeEfi = "1920x1080";
+      };
+    };
+    plymouth.enable = true;
+  };
+  # boot.kernelPackages = pkgs.linuxPackages_4_19;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # boot.plymouth.enable = true;
 
   networking.hostName = "goldenfeynman"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
