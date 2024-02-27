@@ -185,7 +185,6 @@
     manim
     labplot
     google-drive-ocamlfuse
-    obsidian
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
