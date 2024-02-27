@@ -120,7 +120,7 @@
     Service = {
       Type = "forking";
       User = "orahcio";
-      ExecStart = ''${stable.google-drive-ocamlfuse}/bin/google-drive-ocamlfuse /home/orahcio/GoogleDrive'';
+      ExecStart = ''${pkgs.google-drive-ocamlfuse}/bin/google-drive-ocamlfuse /home/orahcio/GoogleDrive'';
       ExecStop = ''fusermount -u /home/orahcio/GoogleDrive'';
       Restart = "always";
     };
@@ -185,6 +185,7 @@
     manim
     labplot
     google-drive-ocamlfuse
+    obsidian
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
