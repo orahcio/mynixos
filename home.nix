@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, stable, ... }:
 
 {
 
@@ -128,7 +128,7 @@
     Install.WantedBy = [ "default.target" ];
   };
 
-  home.packages = with pkgs; [
+  home.packages = with stable; [
     (texlive.combine { inherit (texlive)
       scheme-small
       standalone
@@ -154,6 +154,7 @@
       adjustbox # pandoc
       collectbox # pandoc
       abntex2
+      mparhack
       nomencl # usado no article do abntex2
       wrapfig
       sidecap

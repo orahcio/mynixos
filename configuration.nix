@@ -134,19 +134,19 @@ in
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
   services.xserver.displayManager = {
     # sddm.enable = true;
     lightdm.enable = true;
-    defaultSession = "plasmawayland";
+    defaultSession = "plasma";
     autoLogin.user = "orahcio";
   };
   programs.dconf.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "br";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Configure console keymap
@@ -335,6 +335,8 @@ in
     '';
   };
   security.polkit.enable = true;
+
+  nixpkgs.config.permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
