@@ -134,11 +134,11 @@ in
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
   services.xserver.displayManager = {
     sddm.enable = true;
     # lightdm.enable = true;
-    defaultSession = "plasmawayland";
+    defaultSession = "plasma";
     autoLogin.user = "orahcio";
   };
   programs.dconf.enable = true;
