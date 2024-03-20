@@ -89,7 +89,7 @@
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager = {
     sddm.enable = true;
     # lightdm.enable = true;
@@ -200,20 +200,6 @@
     hunspellDicts.en_US
     aspell
     aspellDicts.pt_BR
-    libsForQt5.kdeconnect-kde
-    libsForQt5.accounts-qt
-    libsForQt5.kwrited
-    libsForQt5.kate
-    libsForQt5.falkon
-    libsForQt5.kdegraphics-thumbnailers    
-    libsForQt5.kruler
-    libsForQt5.kasts
-    libsForQt5.neochat
-    libsForQt5.kcalc
-    libsForQt5.kontact
-    libsForQt5.kmail
-    libsForQt5.akonadi
-    libsForQt5.ktorrent
     pdfarranger
     obs-studio
     arduino-cli
