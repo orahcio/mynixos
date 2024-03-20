@@ -134,13 +134,13 @@ in
   };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager = {
-    sddm.enable = true;
+    sddm.wayland.enable = true;
     # lightdm.enable = true;
     defaultSession = "plasmawayland";
     autoLogin.user = "orahcio";
   };
+  services.xserver.desktopManager.plasma5.enable = true;
   programs.dconf.enable = true;
 
   # Configure keymap in X11
@@ -267,11 +267,9 @@ in
   programs.java.enable = true;
   programs.steam = {
     enable = true;
-    # package = pkgs.steam.override { withJava = true; };
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  programs.steam.package = pkgs.steam.override { withJava = true; };
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
