@@ -186,7 +186,6 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  programs.java = { enable = true; package = pkgs.openjdk19; };
 
   # # Montar Googledrive com ocamfuse depois de se conectar a internet
   # # Lembrar que só faz sentido depois de configurar o google-drive-ocamfuse
@@ -265,11 +264,14 @@ in
     appimage-run
   ];
 
+  programs.java.enable = true;
   programs.steam = {
     enable = true;
+    # package = pkgs.steam.override { withJava = true; };
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.steam.package = pkgs.steam.override { withJava = true; };
   
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
