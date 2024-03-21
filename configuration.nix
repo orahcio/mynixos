@@ -14,7 +14,7 @@
 
   # Bootloader.
   boot = {
-    kernelPackages = pkgs.linuxPackages_4_19;
+    # kernelPackages = pkgs.linuxPackages_4_19;
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -91,10 +91,10 @@
   # Enable the KDE Plasma Desktop Environment.
   services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager = {
-    sddm.enable = true;
+    sddm.wayland.enable = true;
     # lightdm.enable = true;
     defaultSession = "plasma";
-    autoLogin.user = "orahcio";
+    # autoLogin.user = "orahcio";
   };
   programs.dconf.enable = true;
 
