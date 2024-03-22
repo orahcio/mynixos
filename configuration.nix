@@ -78,7 +78,7 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
-    driSupport32Bit = true;
+    # driSupport32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "modesetting" ]; # "nvidia"
@@ -171,10 +171,8 @@
     neofetch
     killall
     bc
-    kup
     bup
     lshw
-    tdesktop
     ark
     megasync
     vlc
@@ -191,10 +189,8 @@
         wineWowPackages.stable gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
       ];
     })
-    kdenlive
     mediainfo
     filelight
-    layan-kde
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
