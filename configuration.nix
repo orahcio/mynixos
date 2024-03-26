@@ -134,13 +134,13 @@ in
   };
 
   # Enable the KDE Plasma Desktop Environment.
+  services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager = {
     sddm.wayland.enable = true;
     # lightdm.enable = true;
-    defaultSession = "plasmawayland";
+    defaultSession = "plasma";
     autoLogin.user = "orahcio";
   };
-  services.xserver.desktopManager.plasma5.enable = true;
   programs.dconf.enable = true;
 
   # Configure keymap in X11
@@ -238,28 +238,26 @@ in
     kdenlive
     mediainfo
     filelight
-    layan-kde
+    # layan-kde
     libreoffice-qt
     hunspell
     hunspellDicts.en_US
     aspell
     aspellDicts.pt_BR
-    libsForQt5.kdeconnect-kde
-    libsForQt5.accounts-qt
-    libsForQt5.kwrited
-    libsForQt5.kate
-    libsForQt5.falkon
-    libsForQt5.kdegraphics-thumbnailers    
-    libsForQt5.kruler
-    libsForQt5.kasts
-    libsForQt5.neochat
-    libsForQt5.kcalc
-    libsForQt5.kontact
-    libsForQt5.kmail
-    libsForQt5.akonadi
-    libsForQt5.ktorrent
+    kdePackages.kdeconnect-kde
+    kdePackages.accounts-qt
+    kdePackages.kwrited
+    kdePackages.kruler
+    kdePackages.kasts
+    kdePackages.kcalc
+    kdePackages.kontact
+    kdePackages.kmail
+    kdePackages.akonadi
+    kdePackages.ktorrent
+    kdePackages.kbackup
     pdfarranger
     obs-studio
+    qutebrowser
     arduino-cli
     appimage-run
   ];

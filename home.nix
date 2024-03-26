@@ -170,7 +170,6 @@
     })
     kile
     lyx
-    qutebrowser
     tor-browser-bundle-bin
     google-chrome
     microsoft-edge
