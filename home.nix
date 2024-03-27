@@ -185,6 +185,7 @@
     manim
     labplot
     google-drive-ocamlfuse
+    lynx
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
