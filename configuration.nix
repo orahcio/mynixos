@@ -255,6 +255,7 @@ in
     kdePackages.akonadi
     kdePackages.ktorrent
     kdePackages.kbackup
+    kdePackages.partitionmanager
     pdfarranger
     obs-studio
     qutebrowser
