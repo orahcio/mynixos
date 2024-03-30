@@ -256,11 +256,14 @@ in
     kdePackages.ktorrent
     kdePackages.kbackup
     kdePackages.partitionmanager
+    kdePackages.oxygen
+    kdePackages.oxygen-icons
     pdfarranger
     obs-studio
     qutebrowser
     arduino-cli
     appimage-run
+    gparted
   ];
 
   programs.java.enable = true;
