@@ -258,6 +258,7 @@ in
     kdePackages.partitionmanager
     kdePackages.oxygen
     kdePackages.oxygen-icons
+    kdePackages.kparts
     pdfarranger
     obs-studio
     qutebrowser
