@@ -239,11 +239,13 @@ in
     mediainfo
     filelight
     # layan-kde
-    libreoffice-qt
+    libreoffice-qt-fresh
     hunspell
     hunspellDicts.en_US
+    hunspellDicts.pt_BR
     aspell
     aspellDicts.pt_BR
+    kile
     kdePackages.kdeconnect-kde
     kdePackages.accounts-qt
     kdePackages.kwrited

@@ -168,7 +168,6 @@
       xpatch
       biber;
     })
-    kile
     lyx
     tor-browser-bundle-bin
     google-chrome
