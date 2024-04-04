@@ -215,10 +215,8 @@ in
     neofetch
     killall
     bc
-    kup
     bup
     lshw
-    tdesktop
     ark
     megasync
     vlc
