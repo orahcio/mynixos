@@ -171,7 +171,6 @@
     lyx
     tor-browser-bundle-bin
     google-chrome
-    microsoft-edge
     xournalpp
     inkscape
     gimp
@@ -185,6 +184,8 @@
     labplot
     google-drive-ocamlfuse
     lynx
+    pkgs.zapzap
+    evolution
     (python3.withPackages(ps: with ps; [
       setuptools
       cython

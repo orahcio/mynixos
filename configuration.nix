@@ -213,6 +213,7 @@ in
     pciutils
     tarlz unzip gzip unrar bzip2 p7zip binutils-unwrapped-all-targets
     neofetch
+    git # para usar o doas ao invés do sudo o systema tem que ter o git
     killall
     bc
     bup
@@ -245,14 +246,10 @@ in
     aspellDicts.pt_BR
     kile
     kdePackages.kdeconnect-kde
-    kdePackages.accounts-qt
     kdePackages.kwrited
     kdePackages.kruler
     kdePackages.kasts
     kdePackages.kcalc
-    kdePackages.kontact
-    kdePackages.kmail
-    kdePackages.akonadi
     kdePackages.ktorrent
     kdePackages.kbackup
     kdePackages.partitionmanager
@@ -292,6 +289,16 @@ in
     description = "Orahcio Felício de Sousa";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
   };
+  
+  security.doas.enable = true;
+  security.sudo.enable = false;
+  security.doas.extraRules = [{
+    users = ["orahcio"];
+    # Optional, retains environment variables while running commands 
+    # e.g. retains your NIX_PATH when applying your config
+    keepEnv = true; 
+    persist = true;  # Optional, only require password verification a single time
+  }];
   
   # users.users.ilana = {
   #   isNormalUser = true;
