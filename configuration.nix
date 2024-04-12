@@ -285,12 +285,13 @@ in
   # Virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+  programs.fuse.userAllowOther = true; # Coloquei essa linha pra mexer no arquivo /etc/fuse.conf
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
-    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "fuse" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
   };
   
   security.doas.enable = true;
