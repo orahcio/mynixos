@@ -216,9 +216,11 @@ in
     git # para usar o doas ao invés do sudo o systema tem que ter o git
     killall
     bc
+    sshfs
     bup
     lshw
     ark
+    twtxt
     megasync
     vlc
     ffmpeg
@@ -262,6 +264,7 @@ in
     arduino-cli
     appimage-run
     gparted
+    usbimager
   ];
 
   programs.java.enable = true;

@@ -171,6 +171,7 @@
     lyx
     tor-browser-bundle-bin
     google-chrome
+    pkgs.microsoft-edge
     xournalpp
     inkscape
     gimp
