@@ -290,7 +290,7 @@ in
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
-    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" "fuse" ];
   };
   
   security.doas.enable = true;
