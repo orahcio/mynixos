@@ -132,6 +132,9 @@
     (texlive.combine { inherit (texlive)
       scheme-small
       standalone
+      pgf
+      xcolor
+      circuitikz
       preview
       varwidth
       scontents
@@ -185,14 +188,16 @@
     labplot
     google-drive-ocamlfuse
     lynx
+    ncgopher
     pkgs.zapzap
     evolution
+    hexchat
+    pkgs.minecraft # os pkgs são do repositório intável
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
       pyzmq
-      jupyter
-      notebook
+      ipykernel
       numpy
       matplotlib
       scipy
@@ -203,7 +208,6 @@
       nbconvert
       pandas
       openpyxl
-      astropy
     ]))
     (rWrapper.override{ packages = with rPackages; [
       ggplot2

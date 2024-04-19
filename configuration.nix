@@ -219,9 +219,11 @@ in
     sshfs
     bup
     lshw
+    typioca
     ark
     twtxt
     megasync
+    dropbox
     vlc
     ffmpeg
     sqlitebrowser
@@ -292,6 +294,7 @@ in
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
   
   security.doas.enable = true;
@@ -320,7 +323,11 @@ in
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+  };
 
   # Open ports in the firewall.
   # Abrir portas para Diablo III e kdeconnect
