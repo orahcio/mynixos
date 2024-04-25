@@ -6,9 +6,10 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    grub2-themes.url = "github:vinceliuice/grub2-themes";
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, grub2-themes, ... }:
   let
   	system = "x86_64-linux";
 	pkgs = import nixpkgs {
@@ -26,6 +27,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          grub2-themes.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

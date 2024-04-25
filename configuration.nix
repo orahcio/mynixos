@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -24,19 +24,25 @@ in
   boot = {
     kernelPackages = pkgs.linuxPackages_4_19;
     loader = {
-      systemd-boot.enable = true;
+      # systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
       grub = {
-        # enable = true;
+        enable = true;
         efiSupport = true;
         device = "nodev";
-        gfxmodeEfi = "1920x1080";
+        # gfxmodeEfi = "1920x1080";
+        # theme = "${pkgs.kdePackages.breeze-grub}/grub/themes/breeze";
       };
     };
     plymouth.enable = true;
+  };
+  boot.loader.grub2-theme = {
+    enable = true;
+    theme = "tela";
+    footer = true;
   };
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   # boot.loader.systemd-boot.enable = true;
@@ -226,7 +232,7 @@ in
     vlc
     ffmpeg
     sqlitebrowser
-    corefonts
+    # corefonts # Tava ruim de fazer o download na hora do build
     (lutris.override {
       extraLibraries = pkgs: [
         giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
@@ -251,7 +257,7 @@ in
     kdePackages.kdeconnect-kde
     kdePackages.kwrited
     kdePackages.kruler
-    kdePackages.kasts
+    # kdePackages.kasts
     kdePackages.kcalc
     kdePackages.ktorrent
     kdePackages.kbackup
