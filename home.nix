@@ -60,7 +60,7 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium.fhs;
+    package = pkgs.vscode.fhs;
     # extensions = with pkgs.vscode-extensions; [
     #   dracula-theme.theme-dracula
     #   vscodevim.vim
@@ -171,6 +171,8 @@
       xpatch
       biber;
     })
+    typst
+    typst-live
     lyx
     tor-browser-bundle-bin
     google-chrome
@@ -192,7 +194,8 @@
     pkgs.zapzap
     evolution
     hexchat
-    pkgs.minecraft # os pkgs são do repositório intável
+    pkgs.minecraft # os pkgs são do repositório instável
+    maelstrom
     (python3.withPackages(ps: with ps; [
       setuptools
       cython

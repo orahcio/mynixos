@@ -157,8 +157,22 @@ in
   # Configure console keymap
   console.keyMap = "br-abnt2";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Enable CUPS to print documents and to PDF.
+  services.printing = {
+    enable = true;
+
+    cups-pdf = {
+      enable = true;
+      instances = {
+        Download_PDF = {
+          settings = {
+            Out = "\${HOME}/Downloads/cups-pdf";
+            UserUMask = "0033";
+          };
+        };
+      };
+    };
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
