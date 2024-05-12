@@ -233,6 +233,7 @@ in
     tarlz unzip gzip unrar bzip2 p7zip binutils-unwrapped-all-targets
     neofetch
     git # para usar o doas ao invés do sudo o systema tem que ter o git
+    ngrok
     killall
     bc
     sshfs
@@ -314,6 +315,10 @@ in
     description = "Orahcio Felício de Sousa";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
+  };
+  users.extraUsers.orahcio = {
+    subUidRanges = [{ startUid = 100000; count = 65536; }];
+    subGidRanges = [{ startGid = 100000; count = 65536; }];
   };
   
   security.doas.enable = true;

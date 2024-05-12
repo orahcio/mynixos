@@ -43,7 +43,12 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      complete -F _command doas
+    '';
+  };
 
   wayland.windowManager.sway = {
     enable = true;
@@ -194,8 +199,10 @@
     pkgs.zapzap
     evolution
     hexchat
-    pkgs.minecraft # os pkgs são do repositório instável
+    minecraft # os pkgs são do repositório instável
     maelstrom
+    presenterm
+    tmux
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
