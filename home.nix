@@ -49,6 +49,18 @@
       complete -F _command doas
     '';
   };
+  
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+  };
+  
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   wayland.windowManager.sway = {
     enable = true;
@@ -106,6 +118,18 @@
   programs.firefox = {
     enable = true;
   };
+  programs.qutebrowser = {
+    enable = true;
+    searchEngines = {
+      DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
+      nixpackage = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      nw = "https://nixos.wiki/index.php?search={}&go=Go";
+      mynix = "https://mynixos.com/search?q={}";
+      pip = "https://pypi.org/search/?q={}";
+      yt = "https://www.youtube.com/results?search_query={}";
+      gg = "https://www.google.com/search?q={}";
+    };
+  };
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -134,48 +158,49 @@
   };
 
   home.packages = with stable; [
-    (texlive.combine { inherit (texlive)
-      scheme-small
-      standalone
-      pgf
-      xcolor
-      circuitikz
-      preview
-      varwidth
-      scontents
-      ucs
-      units
-      physics
-      unicode-math
-      lualatex-math
-      siunitx
-      mathpazo
-      l3kernel
-      gensymb
-      cancel
-      comment
-      tcolorbox # usada no pandoc pra converter .ipynb
-      environ # pandoc idem
-      pdfcolmk # pandoc
-      titling # pandoc
-      rsfs # pandoc24.05
-      adjustbox # pandoc
-      collectbox # pandoc
-      abntex2
-      mparhack
-      nomencl # usado no article do abntex2
-      wrapfig
-      sidecap
-      subfigure
-      enumitem
-      lastpage
-      lipsum
-      biblatex
-      biblatex-abnt
-      pgfplots
-      xpatch
-      biber;
-    })
+    # (texlive.combine { inherit (texlive)
+    #   scheme-small
+    #   standalone
+    #   pgf
+    #   xcolor
+    #   circuitikz
+    #   preview
+    #   varwidth
+    #   scontents
+    #   ucs
+    #   units
+    #   physics
+    #   unicode-math
+    #   lualatex-math
+    #   siunitx
+    #   mathpazo
+    #   l3kernel
+    #   gensymb
+    #   cancel
+    #   comment
+    #   tcolorbox # usada no pandoc pra converter .ipynb
+    #   environ # pandoc idem
+    #   pdfcolmk # pandoc
+    #   titling # pandoc
+    #   rsfs # pandoc24.05
+    #   adjustbox # pandoc
+    #   collectbox # pandoc
+    #   abntex2
+    #   mparhack
+    #   nomencl # usado no article do abntex2
+    #   wrapfig
+    #   sidecap
+    #   subfigure
+    #   enumitem
+    #   lastpage
+    #   lipsum
+    #   biblatex
+    #   biblatex-abnt
+    #   pgfplots
+    #   xpatch
+    #   biber;
+    # })
+    tectonic
     typst
     typst-live
     lyx
@@ -199,7 +224,6 @@
     pkgs.zapzap
     evolution
     hexchat
-    minecraft # os pkgs são do repositório instável
     maelstrom
     presenterm
     tmux
