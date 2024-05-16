@@ -34,6 +34,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit stable; };
             home-manager.users.orahcio = import ./home.nix;
+            home-manager.backupFileExtension = "backup"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
             # home-manager.users.ilana = import ./home_ilana.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass

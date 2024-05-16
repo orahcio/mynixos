@@ -231,7 +231,7 @@ in
     wget
     pciutils
     tarlz unzip gzip unrar bzip2 p7zip binutils-unwrapped-all-targets
-    neofetch
+    fastfetch
     git # para usar o doas ao invés do sudo o systema tem que ter o git
     ngrok
     killall
