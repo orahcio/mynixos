@@ -23,6 +23,7 @@ in
   # Bootloader.
   boot = {
     kernelPackages = pkgs.linuxPackages_4_19;
+    supportedFilesystems = [ "ntfs" ];
     loader = {
       # systemd-boot.enable = true;
       efi = {
@@ -317,16 +318,22 @@ in
   # Virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  programs.fuse.userAllowOther = true; # Coloquei essa linha pra mexer no arquivo /etc/fuse.conf
+  
+  # Coloquei essa linha pra mexer no arquivo /etc/fuse.conf
+  programs.fuse.userAllowOther = true;
+  # Adicionar o fish como um shell do sistema além do bash
+  programs.fish.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
     extraGroups = [ "networkmanager" "wheel" "audio" "libvirtd" ];
+    shell =pkgs.fish;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
-  
+
+  # doas ao invés de sudo
   security.doas.enable = true;
   security.sudo.enable = false;
   security.doas.extraRules = [{

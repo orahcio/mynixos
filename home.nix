@@ -1,4 +1,4 @@
-{ pkgs, lib, stable, ... }:
+{ pkgs, lib, ... }:
 {
 
   # The home-manager manual is at:
@@ -247,7 +247,7 @@
         format = "[](fg:color_bg1)[[ ⧗ $duration ](fg:color_fg0 bg:color_bg1)]($style)";
       };
       
-      line_break H= {
+      line_break = {
         disabled = false;
       };
 
@@ -359,7 +359,7 @@
     Install.WantedBy = [ "default.target" ];
   };
 
-  home.packages = with stable; [
+  home.packages = with pkgs; [
     # (texlive.combine { inherit (texlive)
     #   scheme-small
     #   standalone
@@ -408,7 +408,7 @@
     lyx
     tor-browser-bundle-bin
     google-chrome
-    pkgs.microsoft-edge
+    microsoft-edge
     xournalpp
     inkscape
     gimp
@@ -423,13 +423,13 @@
     google-drive-ocamlfuse
     lynx
     ncgopher
-    pkgs.zapzap
+    zapzap
     evolution
     hexchat
     maelstrom
     presenterm
     tmux
-    pkgs.cosmic-term
+    warp-terminal
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
