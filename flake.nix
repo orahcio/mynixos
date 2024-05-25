@@ -40,7 +40,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.extraSpecialArgs = { inherit stable; };
+            # home-manager.extraSpecialArgs = { inherit nixvim; };
             home-manager.users.orahcio = import ./home.nix;
             home-manager.backupFileExtension = "rebuild"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
             # home-manager.users.ilana = import ./home_ilana.nix;

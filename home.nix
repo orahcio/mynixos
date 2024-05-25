@@ -264,34 +264,9 @@
     };
   };
 
-  wayland.windowManager.sway = {
-    enable = true;
-    config = rec {
-      modifier = "Mod4";
-      # Use kitty as default terminal
-      terminal = "kitty"; 
-      startup = [
-        # Launch Firefox on start
-        {command = "firefox";}
-      ];
-    };
-  };
-
   programs.vscode = {
     enable = true;
     package = pkgs.vscode.fhs;
-    # extensions = with pkgs.vscode-extensions; [
-    #   dracula-theme.theme-dracula
-    #   vscodevim.vim
-    #   yzhang.markdown-all-in-one
-    #   ms-python.python
-    #   ms-toolsai.jupyter
-    #   ms-ceintl.vscode-language-pack-pt-br
-    #   github.vscode-pull-request-github
-    #   arrterian.nix-env-selector
-    #   bungcip.better-toml
-    #   grapecity.gc-excelviewer
-    # ];
   };
   
   programs.git = {
@@ -299,23 +274,26 @@
     userName = "orahcio";
     userEmail = "orahcio@gmail.com";
   };
-  # programs.vim = {
-  #   enable = true;
-  #   plugins = with pkgs.vimPlugins; [ vim-lastplace vim-nix YouCompleteMe ];
-  #   settings = { ignorecase = true; };
-  #   extraConfig = ''
-  #     set mouse=a
-  #   '';
-  # };
   
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
     extraConfig = ''
       set number relativenumber
+    '';  
+    extraLuaConfig = ''
+      ${builtins.readFile ./lazy.lua}
     '';
   };
+
+  # programs.nixvim = {
+  #   enable = true;
+
+  #   colorschemes.gruvbox.enable = true;
+  #   plugins.lightline.enable = true;
+  # };
 
   programs.firefox = {
     enable = true;
@@ -324,7 +302,7 @@
     enable = true;
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
-      nixpackage = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
       nw = "https://nixos.wiki/index.php?search={}&go=Go";
       mynix = "https://mynixos.com/search?q={}";
       pip = "https://pypi.org/search/?q={}";
