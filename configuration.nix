@@ -248,7 +248,6 @@ in
     vlc
     ffmpeg
     sqlitebrowser
-    # corefonts # Tava ruim de fazer o download na hora do build
     (lutris.override {
       extraLibraries = pkgs: [
         giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
@@ -354,7 +353,7 @@ in
   nix.gc = {
     automatic =true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 7d";
   };
 
   # List services that you want to enable:

@@ -360,48 +360,6 @@
   };
 
   home.packages = with pkgs; [
-    # (texlive.combine { inherit (texlive)
-    #   scheme-small
-    #   standalone
-    #   pgf
-    #   xcolor
-    #   circuitikz
-    #   preview
-    #   varwidth
-    #   scontents
-    #   ucs
-    #   units
-    #   physics
-    #   unicode-math
-    #   lualatex-math
-    #   siunitx
-    #   mathpazo
-    #   l3kernel
-    #   gensymb
-    #   cancel
-    #   comment
-    #   tcolorbox # usada no pandoc pra converter .ipynb
-    #   environ # pandoc idem
-    #   pdfcolmk # pandoc
-    #   titling # pandoc
-    #   rsfs # pandoc24.05
-    #   adjustbox # pandoc
-    #   collectbox # pandoc
-    #   abntex2
-    #   mparhack
-    #   nomencl # usado no article do abntex2
-    #   wrapfig
-    #   sidecap
-    #   subfigure
-    #   enumitem
-    #   lastpage
-    #   lipsum
-    #   biblatex
-    #   biblatex-abnt
-    #   pgfplots
-    #   xpatch
-    #   biber;
-    # })
     tectonic
     typst
     typst-live
@@ -415,7 +373,6 @@
     krita
     gImageReader
     kitty
-    zoom-us
     jabref
     poppler_utils
     manim
@@ -429,7 +386,6 @@
     maelstrom
     presenterm
     tmux
-    warp-terminal
     (python3.withPackages(ps: with ps; [
       setuptools
       cython
@@ -446,11 +402,6 @@
       pandas
       openpyxl
     ]))
-    (rWrapper.override{ packages = with rPackages; [
-      ggplot2
-      IRkernel
-      languageserver
-    ]; })
   ];
 
 }
