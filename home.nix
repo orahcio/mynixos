@@ -291,7 +291,16 @@
     # extraLuaConfig = ''
       # ${builtins.readFile ./lazy.lua}
     # '';
+    extraPython3Packages = pyPkgs: with pyPkgs; [
+      python-lsp-server
+      pynvim
+      ];
     plugins = with pkgs.vimPlugins; [
+      nvim-treesitter
+      vim-devicons
+      coc-pyright
+      vim-airline
+      vim-airline-themes
       {
         plugin = telescope-nvim;
         config = toLua ''
@@ -301,9 +310,6 @@
         vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})'';
       }
-      nvim-treesitter
-      vim-devicons
-      coc-pyright
       {
         plugin = telescope-file-browser-nvim;
         config = toLua "require(\"telescope\").load_extension \"file_browser\"";
