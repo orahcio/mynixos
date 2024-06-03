@@ -306,6 +306,12 @@ in
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
   
+  # Ollama server para ter uma IA localmente
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
