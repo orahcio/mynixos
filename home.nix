@@ -55,6 +55,13 @@
       set fish_greeting # Disable greeting
       fastfetch
     '';
+    functions = {
+      llama_run = {
+        body = ''
+        set -l __args $argv
+        ollama run llama3 $__args'';
+      };
+    };
   };
   
   programs.starship = {
@@ -389,48 +396,44 @@
   };
 
   home.packages = with pkgs; [
+    texlivePackages.latexmk
     tectonic
     typst
     typst-live
     lyx
     tor-browser-bundle-bin
-    google-chrome
     microsoft-edge
     xournalpp
     inkscape
     gimp
-    krita
     gImageReader
-    kitty
     jabref
     poppler_utils
     manim
     # labplot
     google-drive-ocamlfuse
     lynx
-    ncgopher
-    zapzap
     evolution
     hexchat
     maelstrom
     presenterm
     tmux
-    (python3.withPackages(ps: with ps; [
-      setuptools
-      cython
-      pyzmq
-      ipykernel
-      numpy
-      matplotlib
-      scipy
-      ffmpeg-python
-      sympy
-      ipympl
-      pandoc
-      nbconvert
-      pandas
-      openpyxl
-    ]))
+    # (python3.withPackages(ps: with ps; [
+    #   setuptools
+    #   cython
+    #   pyzmq
+    #   ipykernel
+    #   numpy
+    #   matplotlib
+    #   scipy
+    #   ffmpeg-python
+    #   sympy
+    #   ipympl
+    #   pandoc
+    #   nbconvert
+    #   pandas
+    #   openpyxl
+    # ]))
   ];
 
 }

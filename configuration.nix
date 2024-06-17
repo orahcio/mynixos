@@ -243,21 +243,20 @@ in
     typioca
     ark
     twtxt
-    megasync
     dropbox
     vlc
     ffmpeg
     sqlitebrowser
-    (lutris.override {
-      extraLibraries = pkgs: [
-        giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
-      ];
-    })
-    (lutris.override {
-      extraPkgs = pkgs: [
-        wineWowPackages.stable gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
-      ];
-    })
+    # (lutris.override {
+    #   extraLibraries = pkgs: [
+    #     giflib libpng libpulseaudio libgpg-error alsa-plugins alsa-lib libjpeg xorg.libXcomposite xorg.libXinerama libgcrypt libxslt libva gst_all_1.gst-plugins-base
+    #   ];
+    # })
+    # (lutris.override {
+    #   extraPkgs = pkgs: [
+    #     wineWowPackages.stable gnutls openal sqlite v4l-utils gtk3 ocl-icd vulkan-tools mpg123 ncurses 
+    #   ];
+    # })
     kdenlive
     mediainfo
     filelight
@@ -272,19 +271,16 @@ in
     kdePackages.kdeconnect-kde
     kdePackages.kwrited
     kdePackages.kruler
-    # kdePackages.kasts
+    kdePackages.kasts
     kdePackages.kcalc
     kdePackages.ktorrent
     kdePackages.kbackup
     kdePackages.partitionmanager
-    kdePackages.oxygen
-    kdePackages.oxygen-icons
     kdePackages.kparts
+    # PDF e outras coisas
     pdfarranger
     obs-studio
-    arduino-cli
     appimage-run
-    gparted
     usbimager
   ];
   
@@ -297,6 +293,8 @@ in
       ]; })
     corefonts
     liberation_ttf_v1
+    iosevka
+    ibm-plex
   ];
 
   programs.java.enable = true;
