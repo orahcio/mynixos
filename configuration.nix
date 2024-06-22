@@ -153,6 +153,10 @@ in
   # Mouse suport on tty
   services.gpm.enable = true;
 
+  # Virtualizaçõa virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -160,7 +164,9 @@ in
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
 
   # As configurações do home manager
@@ -178,6 +184,9 @@ in
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
+    fastfetch # Apresentação do sistema ao abrir o terminal
+    # Plasma desktop
+    kdePackages.kdeconnect-kde
   ];
   
   # Pacotes de fontes do sistema
@@ -206,6 +215,17 @@ in
   # Aqui é para usar flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # doas ao invés de sudo
+  security.doas.enable = true;
+  security.sudo.enable = false;
+  security.doas.extraRules = [{
+    users = ["orahcio"];
+    # Optional, retains environment variables while running commands 
+    # e.g. retains your NIX_PATH when applying your config
+    keepEnv = true; 
+    persist = true;  # Optional, only require password verification a single time
+  }];
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
