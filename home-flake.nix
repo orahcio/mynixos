@@ -32,10 +32,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "24.05";
-  
-  # Para permitir pacotes unfree pra serem instalados
-  nixpkgs.config.allowUnfree = true;
+  home.stateVersion = "23.11";
 
   # Since we do not install home-manager, you need to let home-manager
   # manage your shell, otherwise it will not be able to add its hooks
@@ -390,6 +387,22 @@
     evolution
     hexchat
     maelstrom
+    # (python3.withPackages(ps: with ps; [
+    #   setuptools
+    #   cython
+    #   pyzmq
+    #   ipykernel
+    #   numpy
+    #   matplotlib
+    #   scipy
+    #   ffmpeg-python
+    #   sympy
+    #   ipympl
+    #   pandoc
+    #   nbconvert
+    #   pandas
+    #   openpyxl
+    # ]))
   ];
 
 }
