@@ -52,6 +52,18 @@
     '';
   };
   
+programs.eza = {
+  enable = true;
+  enableFishIntegration = true;
+  extraOptions = [
+    "--group-directories-first"
+    "--header"
+  ];
+  icons = true;
+};
+
+  programs.bat.enable = true;
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -356,9 +368,8 @@
   #   plugins.lightline.enable = true;
   # };
 
-  programs.firefox = {
-    enable = true;
-  };
+  # programs.firefox.enable = true;
+
   programs.qutebrowser = {
     enable = true;
     searchEngines = {
@@ -383,13 +394,21 @@
   home.packages = with pkgs; [
     xournalpp
     inkscape
-    gimp
+    #gimp
     jabref
     poppler_utils
+    libreoffice-qt
+    hunspell
+    hunspellDicts.pt_BR
+    hunspellDicts.en_US
     # labplot
-    evolution
     hexchat
     maelstrom
+    twtxt
+    #tor-browser
+    # Coisas de email
+    thunderbird
+    neomutt
   ];
 
 }

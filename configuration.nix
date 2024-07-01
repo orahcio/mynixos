@@ -33,11 +33,8 @@ in
   };
 
   # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+  hardware.graphics.enable = true;
+    # driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ]; # "modesetting"
 
@@ -147,13 +144,38 @@ in
     #media-session.enable = true;
   };
 
+  # Enable CUPS to print documents and to PDF.
+  services.printing = {
+    cups-pdf = {
+      enable = true;
+      instances = {
+        Download_PDF = {
+          settings = {
+            Out = "\${HOME}/Downloads/cups-pdf";
+            UserUMask = "0033";
+          };
+        };
+      };
+    };
+  };
+  
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Mouse suport on tty
   services.gpm.enable = true;
 
-  # Virtualizaçõa virt-manager
+  # Ollama server para ter uma IA localmente
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+  
+  # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
+  # xdg.portal.enable = true; # only needed if you are not doing Gnome
+  # services.flatpak.enable = true;
+  
+  # Virtualização virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
   
@@ -164,7 +186,7 @@ in
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "input" ];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
@@ -181,12 +203,16 @@ in
   environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
-    # Plasma desktop
-    kdePackages.kdeconnect-kde
+    gnupg1
+    kdePackages.kgpg
+    kdePackages.qgpgme
+    kdePackages.kwrited
+    espanso-wayland
+    w3m
+    python312
   ];
   
   # Pacotes de fontes do sistema
@@ -211,6 +237,9 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+
+  # kde-connect program
+  programs.kdeconnect.enable = true;
 
   # Aqui é para usar flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
