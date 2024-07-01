@@ -189,6 +189,7 @@ programs.eza = {
   
   home.packages = with pkgs; [
     xournalpp
+    texpresso
     inkscape
     #gimp
     jabref
