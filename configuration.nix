@@ -210,9 +210,6 @@ in
     kdePackages.kgpg
     kdePackages.qgpgme
     kdePackages.kwrited
-    espanso-wayland
-    w3m
-    python312
   ];
   
   # Pacotes de fontes do sistema

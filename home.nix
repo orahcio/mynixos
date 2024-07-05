@@ -142,9 +142,8 @@ programs.eza = {
   
   home.packages = with pkgs; [
     xournalpp
-    texpresso
     inkscape
-    #gimp
+    # gimp
     jabref
     poppler_utils
     libreoffice-qt
@@ -155,11 +154,14 @@ programs.eza = {
     hexchat
     maelstrom
     twtxt
-    #tor-browser
+    espanso-wayland
+    # tor-browser
     # Coisas de email
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth
     neomutt
+    w3m # Para ler email html
+    python312
   ];
 
 }

@@ -58,10 +58,11 @@
       }
     ];
     extraPackages = with pkgs; [
-      wl-clipboard
+      xclip
       gh
       ripgrep
       fd
+      texpresso
     ];
   };
 }
