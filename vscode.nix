@@ -2,9 +2,10 @@
 {
   programs.vscode = {
     enable = true;
+    enableExtensionUpdateCheck = false;
+    enableUpdateCheck = false;
     userSettings = {
       "git.confirmSync" = false;
-      "extensions.autoCheckUpdates" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };
