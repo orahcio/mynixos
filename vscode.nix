@@ -4,6 +4,7 @@
     enable = true;
     userSettings = {
       "git.confirmSync" = false;
+      "extensions.autoCheckUpdates" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };
@@ -14,6 +15,7 @@
       "cSpell.language" = "en,pt,pt_BR";
     };
     extensions = with pkgs.vscode-extensions; [
+      ms-ceintl.vscode-language-pack-pt-br
       ms-toolsai.jupyter
       ms-toolsai.vscode-jupyter-slideshow
       ms-toolsai.vscode-jupyter-cell-tags
