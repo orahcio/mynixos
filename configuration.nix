@@ -14,16 +14,16 @@ let
 in
 {
   # Diretório com as configurações, para não ficar mais em /etc/nixos
-  nix.nixPath = [
-    "nixos-config=/home/orahcio/mynixos/configuration.nix"
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager"
-  ];
+  # nix.nixPath = [
+  #   "nixos-config=/home/orahcio/mynixos/configuration.nix"
+  #   "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+  #   "home-manager=/nix/var/nix/profiles/per-user/root/channels/home-manager"
+  # ];
 
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
+      # <home-manager/nixos>
     ];
 
   # Ativar a mesa digitalizadora
