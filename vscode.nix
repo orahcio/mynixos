@@ -10,6 +10,7 @@
       "files.autoSave" = "afterDelay";
       "editor.fontFamily" = "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
       "editor.fontLigatures" = true;
+      "cSpell.language" = "en,pt,pt_BR";
     };
     extensions = with pkgs.vscode-extensions; [
       ms-toolsai.jupyter
