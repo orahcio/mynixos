@@ -6,6 +6,7 @@
     enableUpdateCheck = false;
     userSettings = {
       "git.confirmSync" = false;
+      "extensions.autoUpdate" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };
