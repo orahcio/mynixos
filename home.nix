@@ -87,7 +87,19 @@ programs.eza = {
   
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    extensions = with pkgs.vscode-extensions; [
+      ms-toolsai.jupyter
+      ms-toolsai.vscode-jupyter-slideshow
+      ms-toolsai.vscode-jupyter-cell-tags
+      yzhang.markdown-all-in-one
+      mkhl.direnv
+      asvetliakov.vscode-neovim
+      streetsidesoftware.code-spell-checker
+      ms-python.vscode-pylance
+      ms-python.python
+      ms-python.debugpy
+      jdinhlife.gruvbox
+    ];
   };
   
   programs.git = {

@@ -178,6 +178,9 @@ in
   # Virtualização virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  # Para ter o fish no sistema além do bash
+  programs.fish.enable = true;
   
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -191,8 +194,6 @@ in
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
 
-  # As configurações do home manager
-  home-manager.users.orahcio = import ./home.nix;
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
@@ -225,9 +226,6 @@ in
     ibm-plex
   ];
   
-  # Adicionar o fish como um shell do sistema além do bash
-  programs.fish.enable = true;
-
   # Para jogar via steam
   programs.steam = {
     enable = true;
