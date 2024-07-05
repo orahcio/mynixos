@@ -3,6 +3,7 @@
   programs.vscode = {
     enable = true;
     userSettings = {
+      "git.confirmSync" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };
