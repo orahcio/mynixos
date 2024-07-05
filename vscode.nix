@@ -2,6 +2,15 @@
 {
   programs.vscode = {
     enable = true;
+    userSettings = {
+      "extensions.experimental.affinity" = {
+        "asvetliakov.vscode-neovim" = 1;
+      };
+      "workbench.colorTheme" = "Gruvbox Dark Soft";
+      "files.autoSave" = "afterDelay";
+      "editor.fontFamily" = "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
+      "editor.fontLigatures" = true;
+    };
     extensions = with pkgs.vscode-extensions; [
       ms-toolsai.jupyter
       ms-toolsai.vscode-jupyter-slideshow
