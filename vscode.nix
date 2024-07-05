@@ -21,8 +21,8 @@
         name = "code-spell-checker-portuguese-brazilian";
         publisher = "streetsidesoftware";
         version = "2.2.1";
-        # sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
-      };
+        sha256 = "wwtlNl1WWeroL8tQotuk56SP8dxc6n5O/gQRuuEC3Bc=";
+      }
     ];
   };
 }
