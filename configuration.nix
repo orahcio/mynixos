@@ -215,6 +215,7 @@ in
     kdePackages.kgpg
     kdePackages.qgpgme
     kdePackages.kwrited
+    vlc
   ];
   
   # Pacotes de fontes do sistema
