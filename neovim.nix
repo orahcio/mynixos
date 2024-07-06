@@ -10,9 +10,15 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    # extraConfig = ''
-      # set number relativenumber
-    # '';  
+    # Corretor ortográfico ref.: https://andreztz.github.io/neovim_spell_check/
+    extraConfig = ''
+      set number
+      set tabstop=2
+      set softtabstop=0 noexpandtab
+      set shiftwidth=2
+      set spelllang=pt_br -- veja referência acima
+      set breakindent -- para o texto quebrar e seguir a indentação
+    '';  
     # extraLuaConfig = ''
       # ${builtins.readFile ./lazy.lua}
     # '';
@@ -21,12 +27,12 @@
       pynvim
       ];
     plugins = with pkgs.vimPlugins; [
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
       texpresso-vim
-      vim-devicons
       coc-pyright
       vim-airline
       vim-airline-themes
+      vim-devicons
       {
         plugin = telescope-nvim;
         config = toLua ''
@@ -38,7 +44,7 @@
       }
       {
         plugin = telescope-file-browser-nvim;
-        config = toLua "require(\"telescope\").load_extension \"file_browser\"";
+        config = toLua "require(\"telescope\").load_extension(\"file_browser\")";
       }
       {
         plugin = telescope-project-nvim;
