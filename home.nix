@@ -113,20 +113,20 @@ programs.eza = {
   #   plugins.lightline.enable = true;
   # };
 
-  # programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
-  programs.qutebrowser = {
-    enable = true;
-    searchEngines = {
-      DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
-      nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-      nw = "https://nixos.wiki/index.php?search={}&go=Go";
-      mynix = "https://mynixos.com/search?q={}";
-      pip = "https://pypi.org/search/?q={}";
-      yt = "https://www.youtube.com/results?search_query={}";
-      gg = "https://www.google.com/search?q={}";
-    };
-  };
+  # programs.qutebrowser = {
+  #   enable = true;
+  #   searchEngines = {
+  #     DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
+  #     nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+  #     nw = "https://nixos.wiki/index.php?search={}&go=Go";
+  #     mynix = "https://mynixos.com/search?q={}";
+  #     pip = "https://pypi.org/search/?q={}";
+  #     yt = "https://www.youtube.com/results?search_query={}";
+  #     gg = "https://www.google.com/search?q={}";
+  #   };
+  # };
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -138,26 +138,26 @@ programs.eza = {
   
   home.packages = with pkgs; [
     xournalpp
-    inkscape
+    # inkscape
     # gimp
     jabref
     poppler_utils
-    libreoffice-qt
-    hunspell
-    hunspellDicts.pt_BR
-    hunspellDicts.en_US
+    # libreoffice-qt
+    # hunspell
+    # hunspellDicts.pt_BR
+    # hunspellDicts.en_US
     # labplot
-    hexchat
+    # hexchat
     maelstrom
     twtxt
-    espanso-wayland
+    # espanso-wayland
     # tor-browser
     # Coisas de email
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth
     neomutt
     w3m # Para ler email html
-    python312
+    python311
   ];
 
 }

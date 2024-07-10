@@ -207,27 +207,31 @@ in
   # $ nix search wget
   environment.variables.EDITOR = "nvim";
 
+  # Excluindo pacotes do plasma
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    oxygen
+    elisa
+    kate
+  ];
+
   environment.systemPackages = with pkgs; [
     wget
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     gnupg1
     kdePackages.kgpg
-    kdePackages.qgpgme
+    # kdePackages.qgpgme
     kdePackages.kwrited
-    vlc
   ];
   
   # Pacotes de fontes do sistema
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [
-      "Meslo"
       "FiraCode"
       "DroidSansMono"
-      "ZedMono"
       ]; })
     corefonts
-    iosevka
     ibm-plex
   ];
   
