@@ -37,7 +37,7 @@ in
   };
 
   # Enable OpenGL
-  hardware.graphics.enable = true;
+  # hardware.graphics.enable = true;
     # driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ]; # "modesetting"
@@ -180,8 +180,8 @@ in
   # services.flatpak.enable = true;
   
   # Virtualização virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
 
   # Para ter o fish no sistema além do bash
   programs.fish.enable = true;
@@ -205,11 +205,11 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.variables.EDITOR = "nvim";
+  # environment.variables.EDITOR = "nvim";
 
   # Excluindo pacotes do plasma
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
+    # plasma-browser-integration
     oxygen
     elisa
     kate
@@ -229,7 +229,7 @@ in
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [
       "FiraCode"
-      "DroidSansMono"
+      # "DroidSansMono"
       ]; })
     corefonts
     ibm-plex
@@ -244,7 +244,7 @@ in
 
   # kde-connect program
   programs.kdeconnect.enable = true;
-
+  
   # Aqui é para usar flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

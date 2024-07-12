@@ -53,15 +53,15 @@
     '';
   };
   
-programs.eza = {
-  enable = true;
-  enableFishIntegration = true;
-  extraOptions = [
-    "--group-directories-first"
-    "--header"
-  ];
-  icons = true;
-};
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = true;
+    extraOptions = [
+      "--group-directories-first"
+      "--header"
+    ];
+    icons = true;
+  };
 
   programs.bat.enable = true;
 
@@ -84,7 +84,9 @@ programs.eza = {
     ./starship.nix
     ./neovim.nix
     ./vscode.nix
-    ];
+  ];
+  
+  programs.neovim.enable = true;
   
   programs.git = {
     enable = true;
@@ -92,41 +94,20 @@ programs.eza = {
     userEmail = "orahcio@gmail.com";
   };
   
-  # programs.neovim = {
-  #   enable = true;
-  #   extraPackages = with pkgs; [
-  #     gnumake
-  #     gcc
-  #     unzip
-  #     xclip
-  #     ripgrep
-  #     fd
-  #     tree-sitter
-  #     nodejs
-  #   ];
-  # };
-
-  # programs.nixvim = {
-  #   enable = true;
-
-  #   colorschemes.gruvbox.enable = true;
-  #   plugins.lightline.enable = true;
-  # };
-
   programs.firefox.enable = true;
 
-  # programs.qutebrowser = {
-  #   enable = true;
-  #   searchEngines = {
-  #     DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
-  #     nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-  #     nw = "https://nixos.wiki/index.php?search={}&go=Go";
-  #     mynix = "https://mynixos.com/search?q={}";
-  #     pip = "https://pypi.org/search/?q={}";
-  #     yt = "https://www.youtube.com/results?search_query={}";
-  #     gg = "https://www.google.com/search?q={}";
-  #   };
-  # };
+  programs.qutebrowser = {
+    enable = true;
+    searchEngines = {
+      DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
+      nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      nw = "https://nixos.wiki/index.php?search={}&go=Go";
+      mynix = "https://mynixos.com/search?q={}";
+      pip = "https://pypi.org/search/?q={}";
+      yt = "https://www.youtube.com/results?search_query={}";
+      gg = "https://www.google.com/search?q={}";
+    };
+  };
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -147,10 +128,10 @@ programs.eza = {
     # hunspellDicts.pt_BR
     # hunspellDicts.en_US
     # labplot
-    # hexchat
+    hexchat
     maelstrom
     twtxt
-    # espanso-wayland
+    espanso-wayland
     # tor-browser
     # Coisas de email
     thunderbird
