@@ -205,7 +205,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.variables.EDITOR = "nvim";
+  environment.variables.EDITOR = "nvim";
 
   # Excluindo pacotes do plasma
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
