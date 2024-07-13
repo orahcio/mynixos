@@ -21,6 +21,7 @@
       ms-toolsai.jupyter
       ms-toolsai.vscode-jupyter-slideshow
       ms-toolsai.vscode-jupyter-cell-tags
+      ms-toolsai.jupyter-renderers
       yzhang.markdown-all-in-one
       mkhl.direnv
       asvetliakov.vscode-neovim

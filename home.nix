@@ -123,10 +123,10 @@
     # gimp
     jabref
     poppler_utils
-    # libreoffice-qt
-    # hunspell
-    # hunspellDicts.pt_BR
-    # hunspellDicts.en_US
+    libreoffice-qt
+    hunspell
+    hunspellDicts.pt_BR
+    hunspellDicts.en_US
     # labplot
     hexchat
     maelstrom

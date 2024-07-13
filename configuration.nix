@@ -176,8 +176,8 @@ in
   };
   
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
-  # xdg.portal.enable = true; # only needed if you are not doing Gnome
-  # services.flatpak.enable = true;
+  xdg.portal.enable = true; # only needed if you are not doing Gnome
+  services.flatpak.enable = true;
   
   # Virtualização virt-manager
   # virtualisation.libvirtd.enable = true;
