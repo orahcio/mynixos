@@ -132,6 +132,7 @@
     maelstrom
     twtxt
     espanso-wayland
+    # zed-editor # Ainda está cru em relação ao vscode, para o python
     # tor-browser
     # Coisas de email
     thunderbird
