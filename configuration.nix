@@ -223,6 +223,7 @@ in
     kdePackages.kgpg
     # kdePackages.qgpgme
     kdePackages.kwrited
+    steam-run
   ];
   
   # Pacotes de fontes do sistema
@@ -235,7 +236,8 @@ in
     ibm-plex
   ];
   
-  # Para jogar via steam
+  # Para jogar via steam com java
+  programs.java.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

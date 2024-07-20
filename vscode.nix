@@ -30,6 +30,9 @@
       ms-python.vscode-pylance
       ms-python.python
       ms-python.debugpy
+      ms-vscode.cpptools-extension-pack
+      ms-vscode.cpptools
+      ms-vscode.cmake-tools
       jnoortheen.nix-ide
       mkhl.direnv
       jdinhlife.gruvbox
