@@ -126,7 +126,17 @@ in
   };
 
   # Configure console keymap
-  console.keyMap = "br-abnt2";
+  # console.keyMap = "br-abnt2";
+  console = {
+    earlySetup = true;
+    # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    font = "ter-powerline-v24b";
+    packages = with pkgs; [ 
+      terminus_font
+      powerline-fonts
+      ];
+    keyMap = "br-abnt2";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -180,8 +190,8 @@ in
   services.flatpak.enable = true;
   
   # Virtualização virt-manager
-  # virtualisation.libvirtd.enable = true;
-  # programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Para ter o fish no sistema além do bash
   programs.fish.enable = true;
@@ -212,18 +222,19 @@ in
     # plasma-browser-integration
     oxygen
     elisa
-    kate
   ];
 
   environment.systemPackages = with pkgs; [
-    wget
+    wget unrar
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     gnupg1
     kdePackages.kgpg
     # kdePackages.qgpgme
     kdePackages.kwrited
+    kdePackages.ktorrent
     steam-run
+    vlc
   ];
   
   # Pacotes de fontes do sistema

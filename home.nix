@@ -42,6 +42,53 @@
   # to your profile.
   programs.home-manager.enable = true;
   
+  # Hyprland
+  wayland.windowManager.hyprland = {
+    # Whether to enable Hyprland wayland compositor
+    enable = true;
+    # The hyprland package to use
+    package = pkgs.hyprland;
+    # Whether to enable XWayland
+    xwayland.enable = true;
+
+    # Optional
+    # Whether to enable hyprland-session.target on hyprland startup
+    systemd.enable = true;
+    
+    # Configurações
+    settings = {
+      "$terminal" = "kitty";
+      "$filemanager" = "dolphin";
+      "$menu" = "wofi --show drun";
+
+      exec-once = [
+        "$terminal"
+        "waybar"
+      ];
+
+      input = {
+        follow_mouse = 1;
+        touchpad = {
+          natural_scroll = true;
+        };
+      };
+      gestures = {
+        workspace_swipe = true;
+      };
+
+      "$mainMod" = "SUPER";
+
+      bind = [
+        "$mainMod, Q, exec, $terminal"
+        "$mainMod, C, killactive,"
+        "$mainMod, M, exit,"
+        "$mainMod, E, exec, $fileManager"
+        "$mainMod, V, togglefloating,"
+        "$mainMod, R, exec, $menu"
+      ];
+    };
+  };
+  
   # Direnv (ref. SergeK https://discourse.nixos.org/t/reproducible-direnv-setup-on-nixos/20006/2)
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -75,7 +122,7 @@
       llama_run = {
         body = ''
         set -l __args $argv
-        ollama run llama3 $__args'';
+        ollama run dolphin-llama3 $__args'';
       };
     };
   };
@@ -123,6 +170,7 @@
     # gimp
     jabref
     poppler_utils
+    pdfarranger
     libreoffice-qt
     hunspell
     hunspellDicts.pt_BR
@@ -140,6 +188,10 @@
     neomutt
     w3m # Para ler email html
     python311
+    # Coisas para o Hyprland
+    kitty
+    wofi
+    waybar
   ];
 
 }

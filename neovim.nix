@@ -16,7 +16,7 @@
       set tabstop=2
       set softtabstop=0 noexpandtab
       set shiftwidth=2
-      set spelllang=pt_br,en " veja referência acima
+      set spell spelllang=pt_br,en " veja referência acima
       set linebreak " precisa ligar o linebreak para o comando abaixo funcionar
       set breakat=\ \ ;:,!? " caracteres os quais o texto pode quebrar
       set breakindent " para o texto quebrar e seguir a indentação

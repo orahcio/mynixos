@@ -15,6 +15,8 @@
       "editor.fontFamily" = "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
       "editor.fontLigatures" = true;
       "cSpell.language" = "en,pt,pt_BR";
+      # Widgets no jupyter
+      "jupyter.widgetScriptSources" = ["jsdelivr.com" "unpkg.com"];
     };
     extensions = with pkgs.vscode-extensions; [
       ms-ceintl.vscode-language-pack-pt-br
