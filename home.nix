@@ -171,16 +171,15 @@
     jabref
     poppler_utils
     pdfarranger
+    zathura
     libreoffice-qt
     hunspell
     hunspellDicts.pt_BR
     hunspellDicts.en_US
-    # labplot
     hexchat
     maelstrom
     twtxt
-    espanso-wayland
-    # zed-editor # Ainda está cru em relação ao vscode, para o python
+    sqlitebrowser
     # tor-browser
     # Coisas de email
     thunderbird
@@ -192,6 +191,9 @@
     kitty
     wofi
     waybar
+    # Coisas para o kate
+    texlab
+    python311Packages.python-lsp-server
   ];
 
 }

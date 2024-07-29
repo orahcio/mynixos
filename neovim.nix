@@ -66,7 +66,7 @@
       }
     ];
     extraPackages = with pkgs; [
-      xclip
+      wl-clipboard
       gh
       ripgrep
       fd
