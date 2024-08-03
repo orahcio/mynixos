@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, stable, lib, ... }:
 {
 
   # The home-manager manual is at:
@@ -43,51 +43,51 @@
   programs.home-manager.enable = true;
   
   # Hyprland
-  wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
-    enable = true;
-    # The hyprland package to use
-    package = pkgs.hyprland;
-    # Whether to enable XWayland
-    xwayland.enable = true;
+  # wayland.windowManager.hyprland = {
+  #   # Whether to enable Hyprland wayland compositor
+  #   enable = true;
+  #   # The hyprland package to use
+  #   package = pkgs.hyprland;
+  #   # Whether to enable XWayland
+  #   xwayland.enable = true;
 
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
+  #   # Optional
+  #   # Whether to enable hyprland-session.target on hyprland startup
+  #   systemd.enable = true;
     
-    # Configurações
-    settings = {
-      "$terminal" = "kitty";
-      "$filemanager" = "dolphin";
-      "$menu" = "wofi --show drun";
+  #   # Configurações
+  #   settings = {
+  #     "$terminal" = "kitty";
+  #     "$filemanager" = "dolphin";
+  #     "$menu" = "wofi --show drun";
 
-      exec-once = [
-        "$terminal"
-        "waybar"
-      ];
+  #     exec-once = [
+  #       "$terminal"
+  #       "waybar"
+  #     ];
 
-      input = {
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = true;
-        };
-      };
-      gestures = {
-        workspace_swipe = true;
-      };
+  #     input = {
+  #       follow_mouse = 1;
+  #       touchpad = {
+  #         natural_scroll = true;
+  #       };
+  #     };
+  #     gestures = {
+  #       workspace_swipe = true;
+  #     };
 
-      "$mainMod" = "SUPER";
+  #     "$mainMod" = "SUPER";
 
-      bind = [
-        "$mainMod, Q, exec, $terminal"
-        "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, $menu"
-      ];
-    };
-  };
+  #     bind = [
+  #       "$mainMod, Q, exec, $terminal"
+  #       "$mainMod, C, killactive,"
+  #       "$mainMod, M, exit,"
+  #       "$mainMod, E, exec, $fileManager"
+  #       "$mainMod, V, togglefloating,"
+  #       "$mainMod, R, exec, $menu"
+  #     ];
+  #   };
+  # };
   
   # Direnv (ref. SergeK https://discourse.nixos.org/t/reproducible-direnv-setup-on-nixos/20006/2)
   programs.direnv.enable = true;
@@ -133,7 +133,7 @@
     ./vscode.nix
   ];
   
-  programs.neovim.enable = true;
+  # programs.neovim.enable = true;
   
   programs.git = {
     enable = true;
@@ -145,6 +145,7 @@
 
   programs.qutebrowser = {
     enable = true;
+    package = stable.qutebrowser;
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
@@ -164,23 +165,24 @@
   };
 
   
-  home.packages = with pkgs; [
+  home.packages = with stable; [
     xournalpp
+    kile
     # inkscape
     # gimp
     jabref
     poppler_utils
     pdfarranger
-    zathura
-    libreoffice-qt
-    hunspell
-    hunspellDicts.pt_BR
-    hunspellDicts.en_US
+    # libreoffice-qt
+    # hunspell
+    # hunspellDicts.pt_BR
+    # hunspellDicts.en_US
     hexchat
     maelstrom
     twtxt
-    sqlitebrowser
+    # sqlitebrowser
     # tor-browser
+    # steam-run
     # Coisas de email
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth
@@ -188,9 +190,9 @@
     w3m # Para ler email html
     python311
     # Coisas para o Hyprland
-    kitty
-    wofi
-    waybar
+    # kitty
+    # wofi
+    # waybar
     # Coisas para o kate
     texlab
     python311Packages.python-lsp-server

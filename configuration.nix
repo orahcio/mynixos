@@ -142,7 +142,7 @@ in
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -180,10 +180,10 @@ in
   services.gpm.enable = true;
 
   # Ollama server para ter uma IA localmente
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+#   services.ollama = {
+#     enable = true;
+#     acceleration = "cuda";
+#   };
   
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   xdg.portal.enable = true; # only needed if you are not doing Gnome
@@ -233,8 +233,7 @@ in
     # kdePackages.qgpgme
     kdePackages.kwrited
     kdePackages.ktorrent
-    steam-run
-    vlc
+    # vlc
   ];
   
   # Pacotes de fontes do sistema

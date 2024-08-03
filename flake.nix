@@ -2,7 +2,8 @@
   description = "Configuração do NixOS de Orahcio";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,13 +14,17 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, lix-module, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, nix-stable, lix-module, home-manager, ... }:
   let
   	system = "x86_64-linux";
 	pkgs = import nixpkgs {
 		inherit system;
 		config.allowUnfree = true;
 	};
+  stable = import nix-stable {
+    inherit system;
+    config.allowUnfree = true;
+  };
   in
   {
     nixosConfigurations = {
@@ -31,7 +36,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.extraSpecialArgs = { inherit nixvim; };
+            home-manager.extraSpecialArgs = { inherit stable; };
             home-manager.users.orahcio = import ./home.nix;
             home-manager.backupFileExtension = "backup-"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
             # home-manager.users.ilana = import ./home_ilana.nix;
