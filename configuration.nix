@@ -222,6 +222,7 @@ in
     # plasma-browser-integration
     oxygen
     elisa
+    krdp
   ];
 
   environment.systemPackages = with pkgs; [
@@ -233,7 +234,9 @@ in
     # kdePackages.qgpgme
     kdePackages.kwrited
     kdePackages.ktorrent
-    # vlc
+    kdePackages.akregator
+    kdePackages.tokodon
+    vlc
   ];
   
   # Pacotes de fontes do sistema

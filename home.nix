@@ -43,51 +43,51 @@
   programs.home-manager.enable = true;
   
   # Hyprland
-  # wayland.windowManager.hyprland = {
-  #   # Whether to enable Hyprland wayland compositor
-  #   enable = true;
-  #   # The hyprland package to use
-  #   package = pkgs.hyprland;
-  #   # Whether to enable XWayland
-  #   xwayland.enable = true;
+  wayland.windowManager.hyprland = {
+    # Whether to enable Hyprland wayland compositor
+    enable = true;
+    # The hyprland package to use
+    package = pkgs.hyprland;
+    # Whether to enable XWayland
+    xwayland.enable = true;
 
-  #   # Optional
-  #   # Whether to enable hyprland-session.target on hyprland startup
-  #   systemd.enable = true;
+    # Optional
+    # Whether to enable hyprland-session.target on hyprland startup
+    systemd.enable = true;
     
-  #   # Configurações
-  #   settings = {
-  #     "$terminal" = "kitty";
-  #     "$filemanager" = "dolphin";
-  #     "$menu" = "wofi --show drun";
+    # Configurações
+    settings = {
+      "$terminal" = "kitty";
+      "$filemanager" = "dolphin";
+      "$menu" = "wofi --show drun";
 
-  #     exec-once = [
-  #       "$terminal"
-  #       "waybar"
-  #     ];
+      exec-once = [
+        "$terminal"
+        "waybar"
+      ];
 
-  #     input = {
-  #       follow_mouse = 1;
-  #       touchpad = {
-  #         natural_scroll = true;
-  #       };
-  #     };
-  #     gestures = {
-  #       workspace_swipe = true;
-  #     };
+      input = {
+        follow_mouse = 1;
+        touchpad = {
+          natural_scroll = true;
+        };
+      };
+      gestures = {
+        workspace_swipe = true;
+      };
 
-  #     "$mainMod" = "SUPER";
+      "$mainMod" = "SUPER";
 
-  #     bind = [
-  #       "$mainMod, Q, exec, $terminal"
-  #       "$mainMod, C, killactive,"
-  #       "$mainMod, M, exit,"
-  #       "$mainMod, E, exec, $fileManager"
-  #       "$mainMod, V, togglefloating,"
-  #       "$mainMod, R, exec, $menu"
-  #     ];
-  #   };
-  # };
+      bind = [
+        "$mainMod, Q, exec, $terminal"
+        "$mainMod, C, killactive,"
+        "$mainMod, M, exit,"
+        "$mainMod, E, exec, $fileManager"
+        "$mainMod, V, togglefloating,"
+        "$mainMod, R, exec, $menu"
+      ];
+    };
+  };
   
   # Direnv (ref. SergeK https://discourse.nixos.org/t/reproducible-direnv-setup-on-nixos/20006/2)
   programs.direnv.enable = true;
@@ -173,17 +173,17 @@
     jabref
     poppler_utils
     pdfarranger
-    # libreoffice-qt
-    # hunspell
-    # hunspellDicts.pt_BR
-    # hunspellDicts.en_US
+    libreoffice-qt
+    hunspell
+    hunspellDicts.pt_BR
+    hunspellDicts.en_US
     hexchat
     maelstrom
     twtxt
-    # sqlitebrowser
-    # tor-browser
-    # steam-run
-    # Coisas de email
+    sqlitebrowser
+    tor-browser
+    steam-run
+    # Coisas de email e redes sociais
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth
     neomutt
