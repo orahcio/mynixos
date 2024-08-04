@@ -32,6 +32,9 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          {
+            _module.args = { inherit stable; };
+          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

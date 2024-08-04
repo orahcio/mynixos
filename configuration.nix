@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, stable, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -180,10 +180,11 @@ in
   services.gpm.enable = true;
 
   # Ollama server para ter uma IA localmente
-#   services.ollama = {
-#     enable = true;
-#     acceleration = "cuda";
-#   };
+  services.ollama = {
+    enable = true;
+    package = stable.ollama;
+    acceleration = "cuda";
+  };
   
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   xdg.portal.enable = true; # only needed if you are not doing Gnome
@@ -225,19 +226,20 @@ in
     krdp
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     wget unrar
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     gnupg1
-    kdePackages.kgpg
-    # kdePackages.qgpgme
-    kdePackages.kwrited
-    kdePackages.ktorrent
-    kdePackages.akregator
-    kdePackages.tokodon
     vlc
-  ];
+    ]) ++ (with pkgs.kdePackages; [
+      kgpg
+      kwrited
+      ktorrent
+      akregator
+      tokodon
+      filelight
+    ]);
   
   # Pacotes de fontes do sistema
   fonts.packages = with pkgs; [
