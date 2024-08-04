@@ -30,11 +30,10 @@
     nixosConfigurations = {
       goldenfeynman = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit stable; };
         modules = [
+          lix-module.nixosModules.default
           ./configuration.nix
-          {
-            _module.args = { inherit stable; };
-          }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -47,7 +46,6 @@
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
-          lix-module.nixosModules.default
         ];
       };
     };
