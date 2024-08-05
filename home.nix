@@ -1,4 +1,4 @@
-{ pkgs, stable, lib, ... }:
+{ pkgs, lib, ... }:
 {
 
   # The home-manager manual is at:
@@ -145,7 +145,7 @@
 
   programs.qutebrowser = {
     enable = true;
-    package = stable.qutebrowser;
+    # package = stable.qutebrowser;
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
@@ -165,7 +165,7 @@
   };
 
   
-  home.packages = with stable; [
+  home.packages = with pkgs; [
     xournalpp
     kile
     # inkscape
@@ -190,9 +190,9 @@
     w3m # Para ler email html
     python311
     # Coisas para o Hyprland
-    # kitty
-    # wofi
-    # waybar
+    kitty
+    wofi
+    waybar
     # Coisas para o kate
     texlab
     python311Packages.python-lsp-server

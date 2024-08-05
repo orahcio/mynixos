@@ -30,7 +30,7 @@
     nixosConfigurations = {
       goldenfeynman = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit stable; };
+        # specialArgs = { inherit stable; };
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix
@@ -38,7 +38,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit stable; };
+            # home-manager.extraSpecialArgs = { inherit stable; };
             home-manager.users.orahcio = import ./home.nix;
             home-manager.backupFileExtension = "backup-"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
             # home-manager.users.ilana = import ./home_ilana.nix;

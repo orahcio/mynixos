@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, stable, ... }:
+{ config, pkgs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -182,7 +182,7 @@ in
   # Ollama server para ter uma IA localmente
   services.ollama = {
     enable = true;
-    package = stable.ollama;
+    # package = stable.ollama;
     acceleration = "cuda";
   };
   
