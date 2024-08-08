@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
 
   # The home-manager manual is at:
@@ -122,7 +122,7 @@
       llama_run = {
         body = ''
         set -l __args $argv
-        ollama run dolphin-llama3 $__args'';
+        ollama run codestral $__args'';
       };
     };
   };
@@ -154,6 +154,7 @@
       pip = "https://pypi.org/search/?q={}";
       yt = "https://www.youtube.com/results?search_query={}";
       gg = "https://www.google.com/search?q={}";
+      ft = "https://12ft.io/{}";
     };
   };
 
@@ -196,6 +197,7 @@
     # Coisas para o kate
     texlab
     python311Packages.python-lsp-server
+    nil
   ];
 
 }

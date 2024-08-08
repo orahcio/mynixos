@@ -88,22 +88,6 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz"
       }
     },
-    "nix-stable": {
-      "locked": {
-        "lastModified": 1722651103,
-        "narHash": "sha256-IRiJA0NVAoyaZeKZluwfb2DoTpBAj+FLI0KfybBeDU0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a633d89c6dc9a2a8aae11813a62d7c58b2c0cc51",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1722630782,
@@ -124,7 +108,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "lix-module": "lix-module",
-        "nix-stable": "nix-stable",
         "nixpkgs": "nixpkgs"
       }
     },
