@@ -130,7 +130,7 @@ in
   console = {
     earlySetup = true;
     # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-    font = "ter-powerline-v24b";
+    font = "ter-powerline-v12n";
     packages = with pkgs; [ 
       terminus_font
       powerline-fonts
