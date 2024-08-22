@@ -122,7 +122,7 @@
       llama_run = {
         body = ''
         set -l __args $argv
-        ollama run codestral $__args'';
+        ollama run llama3.1 $__args'';
       };
     };
   };
@@ -155,6 +155,7 @@
       yt = "https://www.youtube.com/results?search_query={}";
       gg = "https://www.google.com/search?q={}";
       ft = "https://12ft.io/{}";
+			wf = "https://www.wolframalpha.com/input?i={}";
     };
   };
 
@@ -184,6 +185,8 @@
     sqlitebrowser
     tor-browser
     steam-run
+    espanso-wayland
+    oterm
     # Coisas de email e redes sociais
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth

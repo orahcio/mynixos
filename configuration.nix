@@ -231,6 +231,8 @@ in
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     gnupg1
+		# Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
+		(pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
     vlc
     ]) ++ (with pkgs.kdePackages; [
       kgpg
