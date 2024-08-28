@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, old-libgit2, ... }:
+{ config, pkgs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -27,7 +27,7 @@ in
     ];
     
   nixpkgs.overlays = [
-    ( ./overlays.nix )
+    ( ./overlays/old-guile-git-overlay.nix )
   ];
   # enables support for Bluetooth
   hardware.bluetooth.enable = true;

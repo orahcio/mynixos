@@ -20,11 +20,11 @@
     nixosConfigurations = {
       goldenfeynman = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit old-libgit2; };
+        specialArgs = { inherit inputs; };
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix
-          (import ./overlays)
+          # (import ./overlays)
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
