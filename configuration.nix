@@ -187,7 +187,7 @@ in
   };
   
   # Gerenciador de pacotes guix
-  # services.guix.enable = true;
+  services.guix.enable = true;
 
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   xdg.portal.enable = true; # only needed if you are not doing Gnome

@@ -104,11 +104,28 @@
         "type": "github"
       }
     },
+    "old-libgit2": {
+      "locked": {
+        "lastModified": 1721390509,
+        "narHash": "sha256-un4CQrKEssnxvwENBxvHY+UenFh8LhBF8GmBqIWafQU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a6c20a73872c4af66ec5489b7241030a155b24c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a6c20a73872c4af66ec5489b7241030a155b24c3",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "lix-module": "lix-module",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "old-libgit2": "old-libgit2"
       }
     },
     "systems": {

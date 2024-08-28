@@ -12,6 +12,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    old-libgit2.url = "github:NixOS/nixpkgs/a6c20a73872c4af66ec5489b7241030a155b24c3";
   };
 
   outputs = { self, nixpkgs, lix-module, home-manager, ... }:
@@ -23,6 +24,7 @@
         modules = [
           lix-module.nixosModules.default
           ./configuration.nix
+          (import ./overlays.nix)
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
