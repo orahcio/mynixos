@@ -25,15 +25,24 @@
         "$kotlin"
         "$haskell"
         "$python"
-        "[](fg:color_blue bg:color_bg3)"
+        "[](fg:color_blue bg:color_bg1)"
         "$docker_context"
         "$conda"
-        "[](fg:color_bg3 bg:color_bg1)"
-        "$time"
         "[ ](fg:color_bg1)"
-        "$line_break$character"
+        # "$line_break$character"
       ];
-      right_format = "$cmd_duration";
+
+      right_format = lib.concatStrings [
+        "[ ](fg:color_bg3)"
+        "$time"
+        "[](fg:color_bg3 bg:color_bg1)"
+				"$cmd_duration"
+        "[](fg:color_bg1)"
+			];
+
+			fill = {
+				symbol = " ";
+			};
 
       add_newline = true;
 
@@ -180,16 +189,16 @@
       time = {
         disabled = false;
         time_format = "%R";
-        style = "bg:color_bg1";
-        format = "[[  $time ](fg:color_fg0 bg:color_bg1)]($style)";
+        style = "bg:color_bg3";
+        format = "[[  $time ](fg:color_fg0 bg:color_bg3)]($style)";
       };
       
       cmd_duration = {
         min_time = 500;
         style = "bg:color_bg1";
-        format = "[](fg:color_bg1)[[ ⧗ $duration ](fg:color_fg0 bg:color_bg1)]($style)";
+        format = "[[ ⧗ $duration ](fg:color_fg0 bg:color_bg1)]($style)";
       };
-      
+
       line_break = {
         disabled = false;
       };

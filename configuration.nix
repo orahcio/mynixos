@@ -186,6 +186,9 @@ in
     acceleration = "cuda";
   };
   
+  # Gerenciador de pacotes guix
+  # services.guix.enable = true;
+
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   xdg.portal.enable = true; # only needed if you are not doing Gnome
   services.flatpak.enable = true;
@@ -227,13 +230,13 @@ in
   ];
 
   environment.systemPackages = (with pkgs; [
-    wget unrar
+    wget unrar bc
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     gnupg1
 		# Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
 		(pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-    vlc
+    mpv
     ]) ++ (with pkgs.kdePackages; [
       kgpg
       kwrited
