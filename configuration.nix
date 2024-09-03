@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -25,9 +25,16 @@ in
       ./hardware-configuration.nix
       # <home-manager/nixos>
     ];
-    
+  
+  # Adicionei um overlay para instalar o guix
   nixpkgs.overlays = [
-    ( ./overlays/old-guile-git-overlay.nix )
+    ( final: prev: let
+      gitold = import inputs.old-libgit2 {
+        system = "x86_64-linux";
+      };
+      in {
+      guile-git = prev.guile-git.override { libgit2 = gitold.libgit2; };
+      } )
   ];
   # enables support for Bluetooth
   hardware.bluetooth.enable = true;
@@ -141,9 +148,6 @@ in
     keyMap = "br-abnt2";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable sound with pipewire.
   # sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -160,41 +164,9 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable CUPS to print documents and to PDF.
-  services.printing = {
-    cups-pdf = {
-      enable = true;
-      instances = {
-        Download_PDF = {
-          settings = {
-            Out = "\${HOME}/Downloads/cups-pdf";
-            UserUMask = "0033";
-          };
-        };
-      };
-    };
-  };
   
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Mouse suport on tty
-  services.gpm.enable = true;
-
-  # Ollama server para ter uma IA localmente
-  services.ollama = {
-    enable = true;
-    # package = stable.ollama;
-    acceleration = "cuda";
-  };
-  
-  # Gerenciador de pacotes guix
-  services.guix.enable = true;
-
-  # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
-  xdg.portal.enable = true; # only needed if you are not doing Gnome
-  services.flatpak.enable = true;
   
   # Virtualização virt-manager
   virtualisation.libvirtd.enable = true;
@@ -215,7 +187,6 @@ in
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
 
-
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "orahcio";
@@ -233,15 +204,18 @@ in
   ];
 
   environment.systemPackages = (with pkgs; [
-    wget unrar bc
+    wget unrar bc dmg2img gptfdisk
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
-    gnupg1
 		# Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
 		(pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
+    oterm
+		afpfs-ng
     mpv
     ]) ++ (with pkgs.kdePackages; [
       kgpg
+      kleopatra
+			partitionmanager
       kwrited
       ktorrent
       akregator
@@ -287,12 +261,44 @@ in
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
+  # Mouse suport on tty
+  services.gpm.enable = true;
+
+  # Ollama server para ter uma IA localmente
+  services.ollama = {
+    enable = true;
+    # package = stable.ollama;
+    acceleration = "cuda";
+  };
+  
+  # Enable CUPS and CUPS to print documents and to PDF.
+  services.printing = {
+		enable = true;
+    cups-pdf = {
+      enable = true;
+      instances = {
+        Download_PDF = {
+          settings = {
+            Out = "\${HOME}/Downloads/cups-pdf";
+            UserUMask = "0033";
+          };
+        };
+      };
+    };
+  };
+
+  # Gerenciador de pacotes guix
+  services.guix.enable = true;
+
+  # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
+  xdg.portal.enable = true; # only needed if you are not doing Gnome
+  services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

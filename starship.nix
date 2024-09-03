@@ -4,7 +4,9 @@
     enable = true;
     enableFishIntegration = true;
     settings = {
-      "$schema" = "https://starship.rs/config-schema.json";
+      # "$schema" = "https://starship.rs/config-schema.json";
+
+			continuation_prompt = "[▸▹ ](dimmed white)";
 
       format = lib.concatStrings [
         "[](color_orange)"

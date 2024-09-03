@@ -157,6 +157,12 @@
       ft = "https://12ft.io/{}";
 			wf = "https://www.wolframalpha.com/input?i={}";
     };
+    keyBindings = {
+      normal = {
+        ",m" = "spawn mpv {url}";
+				",p" = "spawn --userscript qute-pass";
+      };
+    };
   };
 
   dconf.settings = {
@@ -186,7 +192,8 @@
     tor-browser
     steam-run
     espanso-wayland
-    oterm
+    pass-wayland
+		rclone
     # Coisas de email e redes sociais
     thunderbird
     # O neomutt precis de python para rodar o script de OAuth
