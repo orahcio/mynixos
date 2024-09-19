@@ -129,6 +129,18 @@ in
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+	# Enable sway window manager
+	# Configuração que talvez necessite no sway para montar driver por exemplo
+	security.polkit.enable = true;
+  programs.sway = {
+    enable = true;
+		package = pkgs.swayfx;
+		xwayland.enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+	programs.waybar.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "br";
@@ -140,7 +152,7 @@ in
   console = {
     earlySetup = true;
     # font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
-    font = "ter-powerline-v12n";
+    font = "ter-powerline-v16b";
     packages = with pkgs; [ 
       terminus_font
       powerline-fonts
@@ -165,9 +177,6 @@ in
     #media-session.enable = true;
   };
   
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-  
   # Virtualização virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
@@ -182,7 +191,7 @@ in
   users.users.orahcio = {
     isNormalUser = true;
     description = "Orahcio Felício de Sousa";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "input" "video" ];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
@@ -204,7 +213,7 @@ in
   ];
 
   environment.systemPackages = (with pkgs; [
-    wget unrar bc dmg2img gptfdisk
+    wget unrar bc dmg2img gptfdisk btop
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
 		# Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
@@ -212,6 +221,11 @@ in
     oterm
 		afpfs-ng
     mpv
+		# Coisas para o sway
+		mako
+		wpaperd
+		kitty
+		# Coisas do Plasma desktop
     ]) ++ (with pkgs.kdePackages; [
       kgpg
       kleopatra
@@ -231,7 +245,11 @@ in
       ]; })
     corefonts
     ibm-plex
+		font-awesome
   ];
+
+	# Para regular o brilho do monitor
+	programs.light.enable = true;
   
   # Para jogar via steam com java
   programs.java.enable = true;
@@ -267,15 +285,6 @@ in
   };
 
   # List services that you want to enable:
-  # Mouse suport on tty
-  services.gpm.enable = true;
-
-  # Ollama server para ter uma IA localmente
-  services.ollama = {
-    enable = true;
-    # package = stable.ollama;
-    acceleration = "cuda";
-  };
   
   # Enable CUPS and CUPS to print documents and to PDF.
   services.printing = {
@@ -293,7 +302,14 @@ in
     };
   };
 
-  # Gerenciador de pacotes guix
+  # Mouse suport on tty
+  services.gpm.enable = true;
+
+  # Ollama server para ter uma IA localmente
+  services.ollama.enable = true;
+	services.ollama.acceleration = "cuda";
+
+  # # Gerenciador de pacotes guix
   services.guix.enable = true;
 
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)

@@ -42,53 +42,6 @@
   # to your profile.
   programs.home-manager.enable = true;
   
-  # Hyprland
-  wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
-    enable = true;
-    # The hyprland package to use
-    package = pkgs.hyprland;
-    # Whether to enable XWayland
-    xwayland.enable = true;
-
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
-    
-    # Configurações
-    settings = {
-      "$terminal" = "kitty";
-      "$filemanager" = "dolphin";
-      "$menu" = "wofi --show drun";
-
-      exec-once = [
-        "$terminal"
-        "waybar"
-      ];
-
-      input = {
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = true;
-        };
-      };
-      gestures = {
-        workspace_swipe = true;
-      };
-
-      "$mainMod" = "SUPER";
-
-      bind = [
-        "$mainMod, Q, exec, $terminal"
-        "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, $menu"
-      ];
-    };
-  };
-  
   # Direnv (ref. SergeK https://discourse.nixos.org/t/reproducible-direnv-setup-on-nixos/20006/2)
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -118,6 +71,9 @@
       set fish_greeting # Disable greeting
       fastfetch
     '';
+		loginShellInit = ''
+			espanso start --unmanaged
+		'';
     functions = {
       llama_run = {
         body = ''
@@ -150,16 +106,18 @@
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
       nw = "https://nixos.wiki/index.php?search={}&go=Go";
+			nd = "https://discourse.nixos.org/search?q={}";
       mynix = "https://mynixos.com/search?q={}";
       pip = "https://pypi.org/search/?q={}";
       yt = "https://www.youtube.com/results?search_query={}";
       gg = "https://www.google.com/search?q={}";
-      ft = "https://12ft.io/{}";
 			wf = "https://www.wolframalpha.com/input?i={}";
+			ft = "https://12ft.io/{}";
     };
     keyBindings = {
       normal = {
-        ",m" = "spawn mpv {url}";
+        ",m" = "spawn umpv {url}";
+				",M" = "hint links spawn umpv {hint-url}";
 				",p" = "spawn --userscript qute-pass";
       };
     };
@@ -172,42 +130,44 @@
     };
   };
 
-  
   home.packages = with pkgs; [
+		# Coisas de Office
     xournalpp
     kile
     # inkscape
     # gimp
     jabref
-    poppler_utils
-    pdfarranger
-    libreoffice-qt
-    hunspell
-    hunspellDicts.pt_BR
-    hunspellDicts.en_US
+    # poppler_utils
+    # pdfarranger
+    # libreoffice-qt
+    # hunspell
+    # hunspellDicts.pt_BR
+    # hunspellDicts.en_US
+
+		# E-mail, bate-papos e miscelânea
+    thunderbird
     hexchat
-    maelstrom
+		element-desktop
     twtxt
-    sqlitebrowser
     tor-browser
     steam-run
-    espanso-wayland
     pass-wayland
+		espanso-wayland
 		rclone
-    # Coisas de email e redes sociais
-    thunderbird
+    maelstrom
+    # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth
-    neomutt
-    w3m # Para ler email html
-    python311
-    # Coisas para o Hyprland
-    kitty
-    wofi
-    waybar
-    # Coisas para o kate
+    # neomutt
+    # w3m # Para ler email html
+    # python311
+
+    # Coisas para desenvolvimento no kate
     texlab
     python311Packages.python-lsp-server
     nil
+
+		# Mais coisas de desenvolvimento
+		conda
   ];
 
 }
