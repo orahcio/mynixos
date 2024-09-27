@@ -42,6 +42,12 @@
   # to your profile.
   programs.home-manager.enable = true;
   
+  imports = [
+    ./starship.nix
+    ./vscode.nix
+    ./neovim.nix
+  ];
+  
   # Direnv (ref. SergeK https://discourse.nixos.org/t/reproducible-direnv-setup-on-nixos/20006/2)
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -69,11 +75,15 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      fastfetch
+      if test $TERM = 'xterm-kitty'
+	fastfetch --logo ~/Imagens/nix-snowflake-colours.png --logo-type kitty-direct --logo-width 50 --logo-height 25
+      else
+	fastfetch
+      end
     '';
-		loginShellInit = ''
-			espanso start --unmanaged
-		'';
+    loginShellInit = ''
+      espanso start --unmanaged
+    '';
     functions = {
       llama_run = {
         body = ''
@@ -82,14 +92,6 @@
       };
     };
   };
-  
-  imports = [
-    ./starship.nix
-    ./neovim.nix
-    ./vscode.nix
-  ];
-  
-  # programs.neovim.enable = true;
   
   programs.git = {
     enable = true;
@@ -134,27 +136,30 @@
 		# Coisas de Office
     xournalpp
     kile
+    zathura
+    mupdf
     # inkscape
     # gimp
     jabref
     # poppler_utils
     # pdfarranger
-    # libreoffice-qt
-    # hunspell
-    # hunspellDicts.pt_BR
-    # hunspellDicts.en_US
+    libreoffice-qt
+    hunspell
+    hunspellDicts.pt_BR
+    hunspellDicts.en_US
 
-		# E-mail, bate-papos e miscelânea
+    # E-mail, bate-papos e miscelânea
     thunderbird
     hexchat
-		element-desktop
+    element-desktop
     twtxt
     tor-browser
     steam-run
     pass-wayland
-		espanso-wayland
-		rclone
+    espanso-wayland
+    rclone
     maelstrom
+    zoom-us
     # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth
     # neomutt
@@ -166,8 +171,8 @@
     python311Packages.python-lsp-server
     nil
 
-		# Mais coisas de desenvolvimento
-		conda
+    # Mais coisas de desenvolvimento
+    conda
   ];
 
 }

@@ -38,11 +38,11 @@
       {
         plugin = telescope-nvim;
         config = toLua ''
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})'';
+				local builtin = require('telescope.builtin')
+				vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+				vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+				vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+				vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })'';
       }
       {
         plugin = telescope-file-browser-nvim;
@@ -50,11 +50,11 @@
       }
       {
         plugin = telescope-project-nvim;
-        config = toLua "require(\'telescope\').load_extension(\'project\')";
+        config = toLua "require(\"telescope\").load_extension(\"project\")";
       }
       {
         plugin = telescope-github-nvim;
-        config = toLua "require(\'telescope\').load_extension(\'gh\')";
+        config = toLua "require(\"telescope\").load_extension(\"gh\")";
       }
       {
         plugin = comment-nvim;

@@ -36,6 +36,19 @@ in
       guile-git = prev.guile-git.override { libgit2 = gitold.libgit2; };
       } )
   ];
+
+  # Filesystem
+  fileSystems."/mnt/jogosemais" = {
+    device = "/dev/disk/by-uuid/dd0f594d-df87-4485-8654-69af92e27aea";
+    fsType = "ext4";
+    options = [ # If you don't have this options attribute, it'll default to "defaults" 
+      # boot options for fstab. Search up fstab mount options you can use
+      "users" # Allows any user to mount and unmount
+      "exec" # Para permitir execução
+      "nofail" # Prevent system from failing if this drive doesn't mount
+    ];
+  };
+
   # enables support for Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -50,44 +63,7 @@ in
   # hardware.graphics.enable = true;
     # driSupport32Bit = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ]; # "modesetting"
-
-  hardware.nvidia = {
-    
-    # Modesetting is required.
-    modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = true;
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
-
-    # Enable the Nvidia settings menu,
-	  # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    prime = {
-      offload = {
-	      enable = true;
-	      enableOffloadCmd = true;
-	    };
-		  nvidiaBusId = "PCI:1:0:0";
-		  intelBusId = "PCI:0:2:0";
-    };
-  };
+  services.xserver.videoDrivers = [ "modesetting" "nouveau" ]; # "modesetting" "nvidia"
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -138,8 +114,6 @@ in
 		xwayland.enable = true;
     wrapperFeatures.gtk = true;
   };
-
-	programs.waybar.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -216,24 +190,31 @@ in
     wget unrar bc dmg2img gptfdisk btop
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
-		# Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
-		(pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-    oterm
-		afpfs-ng
+    # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
+    (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
+    # oterm
+    afpfs-ng
     mpv
-		# Coisas para o sway
-		mako
-		wpaperd
-		kitty
-		# Coisas do Plasma desktop
+    # Coisas para o sway
+    mako # Notificações
+    networkmanagerapplet # Gerenciar redes
+    wpaperd # Papel de parede em slides
+    bemenu # Lançador de aplicativos
+    waybar # Uma barra bem legal
+    kitty # Terminal
+    grim # Screenshot da tela
+    slurp # Screenshot de região da tela
+    swappy # Editar screenshot
+    wl-clipboard
+    pcmanfm
+    # Coisas do Plasma desktop
     ]) ++ (with pkgs.kdePackages; [
       kgpg
       kleopatra
-			partitionmanager
+      partitionmanager
       kwrited
       ktorrent
       akregator
-      tokodon
       filelight
     ]);
   
@@ -306,8 +287,10 @@ in
   services.gpm.enable = true;
 
   # Ollama server para ter uma IA localmente
-  services.ollama.enable = true;
-	services.ollama.acceleration = "cuda";
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
 
   # # Gerenciador de pacotes guix
   services.guix.enable = true;
