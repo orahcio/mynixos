@@ -42,6 +42,41 @@
   # to your profile.
   programs.home-manager.enable = true;
   
+	# Temas
+	qt.enable = true;
+	gtk.enable = true;
+
+	qt.platformTheme.name = "gtk";
+
+	# Ícones
+	gtk.iconTheme.package = pkgs.gruvbox-plus-icons;
+	gtk.iconTheme.name = "Gruvbox-Plus-Dark";
+
+	# Cursor
+	gtk.cursorTheme.package = pkgs.posy-cursors; 
+	gtk.cursorTheme.name = "Posy_Cursor_Black"; 
+	gtk.cursorTheme.size = 64; 
+
+	home.pointerCursor = {
+		gtk.enable = true;
+		package = pkgs.posy-cursors; 
+		name = "Posy_Cursor_Black";
+		size = 64;
+	};
+
+	# Temperatura da cor
+	services.gammastep = {
+    enable = true;
+    provider = "manual";
+		# Coordenadas para Amargosa
+		latitude = -13.03;
+		longitude = -39.59;
+		tray = true;
+	};
+
+	# Configurações para o sway
+	home.file.".config/sway/config".source = ./sway/config;
+
   imports = [
     ./starship.nix
     ./vscode.nix
@@ -81,9 +116,6 @@
 	fastfetch
       end
     '';
-    loginShellInit = ''
-      espanso start --unmanaged
-    '';
     functions = {
       llama_run = {
         body = ''
@@ -104,6 +136,9 @@
   programs.qutebrowser = {
     enable = true;
     # package = stable.qutebrowser;
+		settings = {
+			qt.force_platform = "wayland";
+		};
     searchEngines = {
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
@@ -137,7 +172,6 @@
     xournalpp
     kile
     zathura
-    mupdf
     # inkscape
     # gimp
     jabref
@@ -156,10 +190,8 @@
     tor-browser
     steam-run
     pass-wayland
-    espanso-wayland
     rclone
     maelstrom
-    zoom-us
     # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth
     # neomutt
@@ -167,9 +199,9 @@
     # python311
 
     # Coisas para desenvolvimento no kate
-    texlab
-    python311Packages.python-lsp-server
-    nil
+    # texlab
+    # python311Packages.python-lsp-server
+    # nil
 
     # Mais coisas de desenvolvimento
     conda

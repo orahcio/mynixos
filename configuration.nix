@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -11,6 +11,10 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec -a "$0" "$@"
   '';
+
+	tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  session = "${pkgs.swayfx}/bin/sway --unsupported-gpu";
+  username = "orahcio";
 in
 {
   # Diretório com as configurações, para não ficar mais em /etc/nixos
@@ -23,6 +27,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+			./nvidia.nix
       # <home-manager/nixos>
     ];
   
@@ -63,7 +68,7 @@ in
   # hardware.graphics.enable = true;
     # driSupport32Bit = true;
 
-  services.xserver.videoDrivers = [ "modesetting" "nouveau" ]; # "modesetting" "nvidia"
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -101,9 +106,28 @@ in
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+	# Login em texto
+	services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "${session}";
+        user = "${username}";
+      };
+      default_session = {
+        command = "${tuigreet} --greeting 'Oi você está no NixOS!' --asterisks --remember --remember-user-session --time -cmd '${session}'";
+        user = "greeter";
+      };
+    };
+  };
+
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  # Enable automatic login for the user.
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "orahcio";
 
 	# Enable sway window manager
 	# Configuração que talvez necessite no sway para montar driver por exemplo
@@ -113,6 +137,7 @@ in
 		package = pkgs.swayfx;
 		xwayland.enable = true;
     wrapperFeatures.gtk = true;
+		extraOptions = [ "--unsupported-gpu" ];
   };
 
   # Configure keymap in X11
@@ -170,21 +195,17 @@ in
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
 
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "orahcio";
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.variables.EDITOR = "nvim";
 
   # Excluindo pacotes do plasma
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
     # plasma-browser-integration
-    oxygen
-    elisa
-    krdp
-  ];
+    # oxygen
+    # elisa
+    # krdp
+  # ];
 
   environment.systemPackages = (with pkgs; [
     wget unrar bc dmg2img gptfdisk btop
@@ -192,11 +213,13 @@ in
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-    # oterm
+    oterm
     afpfs-ng
     mpv
     # Coisas para o sway
     mako # Notificações
+		pw-volume
+		pavucontrol
     networkmanagerapplet # Gerenciar redes
     wpaperd # Papel de parede em slides
     bemenu # Lançador de aplicativos
@@ -209,12 +232,12 @@ in
     pcmanfm
     # Coisas do Plasma desktop
     ]) ++ (with pkgs.kdePackages; [
-      kgpg
-      kleopatra
+      # kgpg
+      # kleopatra
       partitionmanager
       kwrited
-      ktorrent
-      akregator
+      # ktorrent
+      # akregator
       filelight
     ]);
   
@@ -226,7 +249,7 @@ in
       ]; })
     corefonts
     ibm-plex
-		font-awesome
+		font-awesome_5
   ];
 
 	# Para regular o brilho do monitor
@@ -241,7 +264,7 @@ in
   };
 
   # kde-connect program
-  programs.kdeconnect.enable = true;
+  # programs.kdeconnect.enable = true;
   
   # Aqui é para usar flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -287,10 +310,10 @@ in
   services.gpm.enable = true;
 
   # Ollama server para ter uma IA localmente
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   # # Gerenciador de pacotes guix
   services.guix.enable = true;
@@ -300,7 +323,13 @@ in
   services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+	# Espanso
+	services.espanso = {
+		enable = true;
+		package = pkgs.espanso-wayland;
+	};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
