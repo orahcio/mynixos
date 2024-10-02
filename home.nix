@@ -76,6 +76,10 @@
 
 	# Configurações para o sway
 	home.file.".config/sway/config".source = ./sway/config;
+	# Waybar
+	home.file.".config/waybar/config.jsonc".source = ./sway/waybar/config.jsonc;
+	home.file.".config/waybar/style.css".source = ./sway/waybar/style.css;
+	home.file.".config/waybar/power_menu.xml.css".source = ./sway/waybar/power_menu.xml;
 
   imports = [
     ./starship.nix
