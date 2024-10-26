@@ -24,15 +24,15 @@
         "pulseaudio",
         // "network",
         // "power-profiles-daemon",
-        "cpu",
+        //"cpu",
         "memory",
 				"disk",
         // "temperature",
         "backlight",
-        "keyboard-state",
+        //"keyboard-state",
         // "sway/language",
         "battery",
-				"battery#bat2",
+				// "battery#bat2",
       	// "custom/pipewire",
         "custom/clock",
         "tray",
@@ -124,14 +124,15 @@
 				"exec": "date +'%a. %d %b. %Y %H:%M'"
 		},
     "cpu": {
-        "format": "{usage}%  ",
+        "format": "{usage}% ",
         "tooltip": false
     },
     "memory": {
-        "format": "{avail}G  "
+        "format": "{avail:.1f}G ",
+				"unit":"GB"
     },
 		"disk": {
-				"format": "{free}  ",
+				"format": "{free} ",
 				"unit": "GB"
 		},
     "temperature": {

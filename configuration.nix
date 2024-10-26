@@ -32,15 +32,15 @@ in
     ];
   
   # Adicionei um overlay para instalar o guix
-  nixpkgs.overlays = [
-    ( final: prev: let
-      gitold = import inputs.old-libgit2 {
-        system = "x86_64-linux";
-      };
-      in {
-      guile-git = prev.guile-git.override { libgit2 = gitold.libgit2; };
-      } )
-  ];
+  # nixpkgs.overlays = [
+  #   ( final: prev: let
+  #     gitold = import inputs.old-libgit2 {
+  #       system = "x86_64-linux";
+  #     };
+  #     in {
+  #     guile-git = prev.guile-git.override { libgit2 = gitold.libgit2; };
+  #     } )
+  # ];
 
   # Filesystem
   fileSystems."/mnt/jogosemais" = {
@@ -53,10 +53,23 @@ in
       "nofail" # Prevent system from failing if this drive doesn't mount
     ];
   };
+	
+	# fileSystems."/mnt/profmat" = {
+	# 	device = "orahcio@10.102.5.1:./";
+	# 	fsType = "sshfs";
+	# 	options = [
+	# 		"nodev"
+	# 		"noatime"
+	# 		"allow_other"
+	# 		"nofail"
+	# 		"IdentityFile=/home/orahcio/.ssh/id_rsa"
+	# 	];
+	# };
 
   # enables support for Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+	services.blueman.enable = true;
 
   # Ativar a mesa digitalizadora
   hardware.opentabletdriver = {
@@ -199,6 +212,7 @@ in
   # $ nix search wget
   environment.variables.EDITOR = "nvim";
 
+	programs.fuse.userAllowOther = true;
   # Excluindo pacotes do plasma
   # environment.plasma6.excludePackages = with pkgs.kdePackages; [
     # plasma-browser-integration
@@ -208,38 +222,46 @@ in
   # ];
 
   environment.systemPackages = (with pkgs; [
-    wget unrar bc dmg2img gptfdisk btop
+    wget unrar bc dmg2img gptfdisk btop sshfs
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
+		gparted
+		squirreldisk
     oterm
-    afpfs-ng
     mpv
+
     # Coisas para o sway
     mako # Notificações
 		pw-volume
 		pavucontrol
     networkmanagerapplet # Gerenciar redes
     wpaperd # Papel de parede em slides
-    bemenu # Lançador de aplicativos
     waybar # Uma barra bem legal
+		yambar
     kitty # Terminal
     grim # Screenshot da tela
     slurp # Screenshot de região da tela
     swappy # Editar screenshot
     wl-clipboard
-    pcmanfm
+    pcmanfm # Gerenciador de arquivos
+		lxmenu-data # Para o gerenciador de arquivos
+		shared-mime-info # Para o gerenciador de arquivos
+		swayimg # Exibir imagem
+
+		# Joguinho
+		sdlpop # Prince of Persia velhão
     # Coisas do Plasma desktop
-    ]) ++ (with pkgs.kdePackages; [
+    ]); # ++ (with pkgs.kdePackages; [
       # kgpg
       # kleopatra
-      partitionmanager
-      kwrited
+      # partitionmanager
+      # kwrited
       # ktorrent
       # akregator
-      filelight
-    ]);
+      # filelight
+    # ]);
   
   # Pacotes de fontes do sistema
   fonts.packages = with pkgs; [
@@ -247,9 +269,9 @@ in
       "FiraCode"
       # "DroidSansMono"
       ]; })
-    corefonts
-    ibm-plex
-		font-awesome_5
+    # corefonts
+    # ibm-plex
+		font-awesome
   ];
 
 	# Para regular o brilho do monitor
@@ -316,14 +338,20 @@ in
   };
 
   # # Gerenciador de pacotes guix
-  services.guix.enable = true;
+  # services.guix.enable = true;
 
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
-  xdg.portal.enable = true; # only needed if you are not doing Gnome
-  services.flatpak.enable = true;
+  # xdg.portal.enable = true; # only needed if you are not doing Gnome
+  # services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+	services.openssh.allowSFTP = true;
+	
+	# Montar pendrives
+	# services.gvfs.enable = true;
+	# services.udisks2.enable = true;
+  # services.devmon.enable = true;
 
 	# Espanso
 	services.espanso = {

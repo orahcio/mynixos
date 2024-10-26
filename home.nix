@@ -48,6 +48,10 @@
 
 	qt.platformTheme.name = "gtk";
 
+	# Tema GTK
+	gtk.theme.package = pkgs.gruvbox-gtk-theme;
+	gtk.theme.name = "Gruvbox-Light";
+
 	# Ícones
 	gtk.iconTheme.package = pkgs.gruvbox-plus-icons;
 	gtk.iconTheme.name = "Gruvbox-Plus-Dark";
@@ -59,6 +63,7 @@
 
 	home.pointerCursor = {
 		gtk.enable = true;
+		x11.enable = true;
 		package = pkgs.posy-cursors; 
 		name = "Posy_Cursor_Black";
 		size = 64;
@@ -105,7 +110,7 @@
       "--group-directories-first"
       "--header"
     ];
-    icons = true;
+    icons = "auto";
   };
 
   programs.bat.enable = true;
@@ -120,13 +125,13 @@
 	fastfetch
       end
     '';
-    functions = {
-      llama_run = {
-        body = ''
-        set -l __args $argv
-        ollama run llama3.1 $__args'';
-      };
-    };
+    # functions = {
+    #   llama_run = {
+    #     body = ''
+    #     set -l __args $argv
+    #     ollama run llama3.1 $__args'';
+    #   };
+    # };
   };
   
   programs.git = {
@@ -138,8 +143,8 @@
   programs.firefox.enable = true;
 
   programs.qutebrowser = {
-    enable = true;
-    # package = stable.qutebrowser;
+		enable = true;
+  	package = pkgs.qutebrowser-qt5;
 		settings = {
 			qt.force_platform = "wayland";
 		};
@@ -147,22 +152,27 @@
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
       nw = "https://nixos.wiki/index.php?search={}&go=Go";
-			nd = "https://discourse.nixos.org/search?q={}";
+  	nd = "https://discourse.nixos.org/search?q={}";
       mynix = "https://mynixos.com/search?q={}";
       pip = "https://pypi.org/search/?q={}";
       yt = "https://www.youtube.com/results?search_query={}";
       gg = "https://www.google.com/search?q={}";
-			wf = "https://www.wolframalpha.com/input?i={}";
-			ft = "https://12ft.io/{}";
+  	wf = "https://www.wolframalpha.com/input?i={}";
+  	ft = "https://12ft.io/{}";
     };
     keyBindings = {
       normal = {
         ",m" = "spawn umpv {url}";
-				",M" = "hint links spawn umpv {hint-url}";
-				",p" = "spawn --userscript qute-pass";
+  		",M" = "hint links spawn umpv {hint-url}";
+  		",p" = "spawn --userscript qute-pass";
       };
     };
   };
+
+	# programs.emacs = {
+	# 	enable = true;
+	# 	extraPackages = epkgs: [ epkgs.auctex ];
+	# };
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
@@ -173,14 +183,12 @@
 
   home.packages = with pkgs; [
 		# Coisas de Office
-    xournalpp
-    kile
-    zathura
-    # inkscape
-    # gimp
     jabref
+    xournalpp
+    zathura
+		# mupdf
     # poppler_utils
-    # pdfarranger
+    pdfarranger
     libreoffice-qt
     hunspell
     hunspellDicts.pt_BR
@@ -192,10 +200,13 @@
     element-desktop
     twtxt
     tor-browser
+		luakit
     steam-run
     pass-wayland
     rclone
     maelstrom
+		qbittorrent
+
     # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth
     # neomutt
@@ -206,9 +217,6 @@
     # texlab
     # python311Packages.python-lsp-server
     # nil
-
-    # Mais coisas de desenvolvimento
-    conda
   ];
 
 }
