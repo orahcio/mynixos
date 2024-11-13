@@ -31,16 +31,16 @@ in
       # <home-manager/nixos>
     ];
   
-  # Adicionei um overlay para instalar o guix
-  # nixpkgs.overlays = [
-  #   ( final: prev: let
-  #     gitold = import inputs.old-libgit2 {
-  #       system = "x86_64-linux";
-  #     };
-  #     in {
-  #     guile-git = prev.guile-git.override { libgit2 = gitold.libgit2; };
-  #     } )
-  # ];
+	# Overlays
+  nixpkgs.overlays = [
+		( final: _prev: {
+			unstable = import inputs.nixpkgs-unstable {
+				system = final.system;
+				config.allowUnfree = true;
+				};
+			}
+		)
+  ];
 
   # Filesystem
   fileSystems."/mnt/jogosemais" = {
@@ -224,6 +224,7 @@ in
   environment.systemPackages = (with pkgs; [
     wget unrar bc dmg2img gptfdisk btop sshfs
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
+		fossil # outro versionamento, alternativa ao git
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
@@ -231,6 +232,7 @@ in
 		squirreldisk
     oterm
     mpv
+		espanso-wayland
 
     # Coisas para o sway
     mako # Notificações
@@ -238,7 +240,7 @@ in
 		pavucontrol
     networkmanagerapplet # Gerenciar redes
     wpaperd # Papel de parede em slides
-    waybar # Uma barra bem legal
+    unstable.waybar # Uma barra bem legal
 		yambar
     kitty # Terminal
     grim # Screenshot da tela
@@ -250,8 +252,9 @@ in
 		shared-mime-info # Para o gerenciador de arquivos
 		swayimg # Exibir imagem
 
-		# Joguinho
+		# Joguinhos
 		sdlpop # Prince of Persia velhão
+
     # Coisas do Plasma desktop
     ]); # ++ (with pkgs.kdePackages; [
       # kgpg
@@ -271,7 +274,7 @@ in
       ]; })
     # corefonts
     # ibm-plex
-		font-awesome
+		font-awesome_5
   ];
 
 	# Para regular o brilho do monitor
@@ -286,7 +289,7 @@ in
   };
 
   # kde-connect program
-  # programs.kdeconnect.enable = true;
+  programs.kdeconnect.enable = true;
   
   # Aqui é para usar flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -334,11 +337,14 @@ in
   # Ollama server para ter uma IA localmente
   services.ollama = {
     enable = true;
+		package = pkgs.unstable.ollama;
     acceleration = "cuda";
   };
 
-  # # Gerenciador de pacotes guix
-  # services.guix.enable = true;
+  # Gerenciador de pacotes guix
+  # talvez necessite usar `doas guix gc --verify=contents,repair`
+  # para restaurar a store do guix, ref. resposta do dariqq no irc.libera.chat #guix
+  services.guix.enable = true;
 
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   # xdg.portal.enable = true; # only needed if you are not doing Gnome
@@ -349,15 +355,18 @@ in
 	services.openssh.allowSFTP = true;
 	
 	# Montar pendrives
-	# services.gvfs.enable = true;
-	# services.udisks2.enable = true;
-  # services.devmon.enable = true;
+	services.gvfs.enable = true;
+	services.udisks2.enable = true;
+  services.devmon.enable = true;
+
+	# Geolocalização
+	# services.geoclue2.enable = true;
 
 	# Espanso
-	services.espanso = {
-		enable = true;
-		package = pkgs.espanso-wayland;
-	};
+	# services.espanso = {
+	# 	enable = true;
+	# 	package = pkgs.espanso-wayland;
+	# };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -365,7 +374,8 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
+	nix.settings.auto-optimise-store = true;
+
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.

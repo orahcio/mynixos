@@ -2,20 +2,19 @@
   description = "Configuração do NixOS de Orahcio";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nix-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    old-libgit2.url = "github:NixOS/nixpkgs/a6c20a73872c4af66ec5489b7241030a155b24c3";
   };
 
-  outputs = inputs@{ self, nixpkgs, lix-module, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, lix-module, home-manager, ... }:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixpkgs {
@@ -38,9 +37,9 @@
 							# (import ./overlays)
 							home-manager.nixosModules.home-manager
 							{
-								home-manager.useGlobalPkgs = true;
+								home-manager.useGlobalPkgs = false;
 								home-manager.useUserPackages = true;
-								# home-manager.extraSpecialArgs = { inherit stable; };
+								home-manager.extraSpecialArgs = { inherit inputs; };
 								home-manager.users.orahcio = import ./home.nix;
 								home-manager.backupFileExtension = "old_backup"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
 								# home-manager.users.ilana = import ./home_ilana.nix;

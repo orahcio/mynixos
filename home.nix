@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   # The home-manager manual is at:
@@ -37,6 +37,17 @@
   # Para permitir pacotes unfree pra serem instalados
   nixpkgs.config.allowUnfree = true;
 
+	# Overlays no home-manager
+	nixpkgs.overlays = [
+		( final: _prev: {
+			unstable = import inputs.nixpkgs-unstable {
+				system = final.system;
+				config.allowUnfree = true;
+				};
+			}
+		)		
+	];
+
   # Since we do not install home-manager, you need to let home-manager
   # manage your shell, otherwise it will not be able to add its hooks
   # to your profile.
@@ -72,7 +83,7 @@
 	# Temperatura da cor
 	services.gammastep = {
     enable = true;
-    provider = "manual";
+    # provider = "geoclue2";
 		# Coordenadas para Amargosa
 		latitude = -13.03;
 		longitude = -39.59;
@@ -110,7 +121,7 @@
       "--group-directories-first"
       "--header"
     ];
-    icons = "auto";
+    icons = true;
   };
 
   programs.bat.enable = true;
@@ -144,7 +155,6 @@
 
   programs.qutebrowser = {
 		enable = true;
-  	package = pkgs.qutebrowser-qt5;
 		settings = {
 			qt.force_platform = "wayland";
 		};
@@ -152,13 +162,13 @@
       DEFAULT = "https://duckduckgo.com/?t=h_&q={}&ia=web";
       nixpkgs = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
       nw = "https://nixos.wiki/index.php?search={}&go=Go";
-  	nd = "https://discourse.nixos.org/search?q={}";
+  		nd = "https://discourse.nixos.org/search?q={}";
       mynix = "https://mynixos.com/search?q={}";
       pip = "https://pypi.org/search/?q={}";
       yt = "https://www.youtube.com/results?search_query={}";
       gg = "https://www.google.com/search?q={}";
-  	wf = "https://www.wolframalpha.com/input?i={}";
-  	ft = "https://12ft.io/{}";
+  		wf = "https://www.wolframalpha.com/input?i={}";
+  		ft = "https://12ft.io/{}";
     };
     keyBindings = {
       normal = {
@@ -196,16 +206,20 @@
 
     # E-mail, bate-papos e miscelânea
     thunderbird
-    hexchat
     element-desktop
     twtxt
     tor-browser
-		luakit
     steam-run
     pass-wayland
     rclone
     maelstrom
-		qbittorrent
+		transmission_4-qt6
+
+		unstable.halloy
+
+		# Podcast, vocal só funciona se mudar o backend pra x11, por isso o script
+		vocal
+		(pkgs.writeScriptBin "vocal" ''GDK_BACKEND=x11 exec com.github.needleandthread.vocal'')
 
     # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth
