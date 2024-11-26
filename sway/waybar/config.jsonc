@@ -2,10 +2,10 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 23, // Waybar height (to be removed for auto height)
+    "height": 26, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 5, // Gaps between modules (4px)
-		"margin-top": 17,
+		"margin-top": 23,
 		"margin-left": 15,
 		"margin-right": 15,
     // Choose the order of the modules
@@ -34,7 +34,8 @@
         "battery",
 				// "battery#bat2",
       	// "custom/pipewire",
-        "custom/clock",
+        // "custom/clock",
+				"clock",
         "tray",
         "custom/power"
     ],
@@ -113,10 +114,10 @@
     },
     "clock": {
         "timezone": "America/Bahia",
-				"format": "{:L%c}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-        //"on-click": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-        // "format-alt": "{:%Y-%m-%d}"
+				"format": "{:L%a. %d %b. %Y %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d-%m-%Y}"
     },
 		"custom/clock": {
 				"format": "{}",

@@ -222,31 +222,32 @@ in
   # ];
 
   environment.systemPackages = (with pkgs; [
-    wget unrar bc dmg2img gptfdisk btop sshfs
+    wget unrar bc entr openssl dmg2img gptfdisk btop lshw pciutils sshfs
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
 		fossil # outro versionamento, alternativa ao git
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
 		gparted
-		squirreldisk
     oterm
     mpv
-		espanso-wayland
+		unstable.espanso-wayland
 
     # Coisas para o sway
+		wofi
     mako # Notificações
 		pw-volume
 		pavucontrol
     networkmanagerapplet # Gerenciar redes
     wpaperd # Papel de parede em slides
     unstable.waybar # Uma barra bem legal
-		yambar
+		unstable.yambar
     kitty # Terminal
     grim # Screenshot da tela
     slurp # Screenshot de região da tela
     swappy # Editar screenshot
     wl-clipboard
+		xdg-desktop-portal-wlr
     pcmanfm # Gerenciador de arquivos
 		lxmenu-data # Para o gerenciador de arquivos
 		shared-mime-info # Para o gerenciador de arquivos
@@ -256,15 +257,16 @@ in
 		sdlpop # Prince of Persia velhão
 
     # Coisas do Plasma desktop
-    ]); # ++ (with pkgs.kdePackages; [
+		]) ++ (with pkgs.kdePackages; [
+			ark
+      filelight
       # kgpg
       # kleopatra
       # partitionmanager
       # kwrited
       # ktorrent
       # akregator
-      # filelight
-    # ]);
+    ]);
   
   # Pacotes de fontes do sistema
   fonts.packages = with pkgs; [
@@ -344,7 +346,10 @@ in
   # Gerenciador de pacotes guix
   # talvez necessite usar `doas guix gc --verify=contents,repair`
   # para restaurar a store do guix, ref. resposta do dariqq no irc.libera.chat #guix
-  services.guix.enable = true;
+  services.guix = {
+		enable = true;
+		package = pkgs.unstable.guix;
+	};
 
   # Flatpak (ref. https://matthewrhone.dev/nixos-package-guide)
   # xdg.portal.enable = true; # only needed if you are not doing Gnome
@@ -358,6 +363,13 @@ in
 	services.gvfs.enable = true;
 	services.udisks2.enable = true;
   services.devmon.enable = true;
+
+	# Rede TOR
+	services.tor = {
+  	enable = true;
+		torsocks.enable = true;
+  	openFirewall = true;
+	};
 
 	# Geolocalização
 	# services.geoclue2.enable = true;

@@ -16,6 +16,9 @@
   # path:
   home.username = "orahcio";
   home.homeDirectory = "/home/orahcio";
+	# home.sessionPath = [
+	# 	"$HOME/.guix-profile/bin"
+	# ];
 
   # If you use non-standard XDG locations, set these options to the
   # appropriate paths:
@@ -32,7 +35,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   
   # Para permitir pacotes unfree pra serem instalados
   nixpkgs.config.allowUnfree = true;
@@ -46,6 +49,14 @@
 				};
 			}
 		)		
+		( final: prev: {
+				vimPlugins = prev.vimPlugins // {
+					own-tree-sitter-context = prev.vimUtils.buildVimPlugin {
+						name = "tree-siter-context";
+						src = inputs.plugin-tree-sitter-context;
+					};
+				};
+		})
 	];
 
   # Since we do not install home-manager, you need to let home-manager
@@ -121,13 +132,24 @@
       "--group-directories-first"
       "--header"
     ];
-    icons = true;
+    icons = "auto";
   };
 
   programs.bat.enable = true;
 
   programs.fish = {
     enable = true;
+		plugins = [
+			{
+    		name = "foreign-env";
+    		src = pkgs.fetchFromGitHub {
+      	owner = "oh-my-fish";
+      	repo = "plugin-foreign-env";
+      	rev = "7f0cf099ae1e1e4ab38f46350ed6757d54471de7";
+      	sha256 = "4+k5rSoxkTtYFh/lEjhRkVYa2S4KEzJ/IJbyJl+rJjQ=";
+    };
+  }
+		];
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       if test $TERM = 'xterm-kitty'
@@ -135,6 +157,16 @@
       else
 	fastfetch
       end
+			
+			# Guix variables, ref.: https://gist.github.com/Pinjontall94/4dfbf1e1b1a8327f10b010ee06f413d1
+
+			set -gx GUIX_PROFILE ~/.config/guix/current
+			# fish_add_path "$GUIX_PROFILE/bin"
+			fenv source $GUIX_PROFILE/etc/profile
+			set -gax XDG_DATA_DIRS "$GUIX_PROFILE/share"
+			set -gx GUILE_LOAD_COMPILED_PATH "$GUIX_PROFILE/lib/guile/3.0/site-ccache $GUIX_PROFILE/share/guile/site/3.0"
+			set -gx GUILE_LOAD_PATH "$GUIX_PROFILE/share/guile/site/3.0"
+			set -gx GUIX_LOCPATH "$HOME/.guix-profile/lib/locale"
     '';
     # functions = {
     #   llama_run = {
@@ -169,6 +201,7 @@
       gg = "https://www.google.com/search?q={}";
   		wf = "https://www.wolframalpha.com/input?i={}";
   		ft = "https://12ft.io/{}";
+			gx = "https://packages.guix.gnu.org/search/?query={}";
     };
     keyBindings = {
       normal = {
@@ -203,6 +236,7 @@
     hunspell
     hunspellDicts.pt_BR
     hunspellDicts.en_US
+		texworks
 
     # E-mail, bate-papos e miscelânea
     thunderbird
@@ -215,11 +249,11 @@
     maelstrom
 		transmission_4-qt6
 
-		unstable.halloy
+		# IRC
+		quassel
 
-		# Podcast, vocal só funciona se mudar o backend pra x11, por isso o script
-		vocal
-		(pkgs.writeScriptBin "vocal" ''GDK_BACKEND=x11 exec com.github.needleandthread.vocal'')
+		# Podcasts
+		gpodder
 
     # sqlitebrowser
     # O neomutt precis de python para rodar o script de OAuth

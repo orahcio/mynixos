@@ -28,20 +28,28 @@ set $wsp5 number 5: 
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | bemenu -c -l 5 -W 0.7 -B 2 -R 10 -M 15 | xargs swaymsg exec --
-# set $menu wofi --show=drun | xargs swaymsg exec --
-set $menu dmenu_path | wmenu -b | xargs swaymsg exec --
+set $menu wofi -I --show=drun | xargs swaymsg exec --
+# set $menu dmenu_path | wmenu -b | xargs swaymsg exec --
 
 set $browser qutebrowser
 
+# Papel de parede aleatório
 exec_always wpaperd -d
+# Notificações
 exec_always mako
+# Para gerenciar conexões
 exec_always nm-applet
-exec gammastep-indicator
+# Autocompletar pelo sistema
 exec espanso start --unmanaged
+# Mesa digitalizadora pra controlar o mouse
 exec otd-daemon
+# Para compartilhar tela na chamada
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=swayfx
+# Kdeconnect
+exec kdeconnect-indicator
 
 
-gaps inner 17
+gaps inner 23
 
 for_window [app_id="org.qutebrowser.qutebrowser"] floating enable
 for_window [app_id="pavucontrol"] floating enable

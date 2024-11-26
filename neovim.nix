@@ -34,6 +34,7 @@
       vim-airline
       vim-airline-themes
       vim-devicons
+			own-tree-sitter-context
 			{
 				plugin = (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-nix

@@ -43,7 +43,7 @@
       jnoortheen.nix-ide
       mkhl.direnv
       jdinhlife.gruvbox
-			continue.continue
+			# continue.continue
     ]  ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "code-spell-checker-portuguese-brazilian";
