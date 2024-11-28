@@ -237,6 +237,7 @@
     hunspellDicts.pt_BR
     hunspellDicts.en_US
 		texworks
+		emacs
 
     # E-mail, bate-papos e miscelânea
     thunderbird
@@ -246,8 +247,6 @@
     steam-run
     pass-wayland
     rclone
-    maelstrom
-		transmission_4-qt6
 
 		# IRC
 		quassel
