@@ -44,7 +44,6 @@
 								home-manager.extraSpecialArgs = { inherit inputs; };
 								home-manager.users.orahcio = import ./home.nix;
 								home-manager.backupFileExtension = "old_backup"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
-								home-manager.users.meuguix = import ./home_guix.nix;
 
 								# Optionally, use home-manager.extraSpecialArgs to pass
 								# arguments to home.nix

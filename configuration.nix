@@ -208,6 +208,11 @@ in
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWas/W1GUZUrBaGdgUSEfI0mnucWrw+SZcKIbP3OTt5 orahcio@vaporhole.xyz" ];
   };
 
+  users.users.meuguix = {
+    isNormalUser = true;
+    description = "Orahcio Felício de Sousa";
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "input" "video" ];
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.variables.EDITOR = "nvim";
