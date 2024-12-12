@@ -7,6 +7,7 @@
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+		border-radius: 7;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -39,7 +40,7 @@ button {
     box-shadow: inset 0 -3px transparent;
     /* Avoid rounded borders under each button name */
     border: none;
-    border-radius: 0;
+    border-radius: 3;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -117,6 +118,7 @@ button:hover {
 
 #clock {
     background-color: #64727D;
+		border-radius: 5;
 }
 
 #custom-clock {
@@ -127,6 +129,7 @@ button:hover {
     background-color: #689d6a;
     /* background-color: #ffffff; */
     color: #000000;
+		border-radius: 5;
 }
 
 #battery.charging, #battery.plugged {
@@ -185,15 +188,18 @@ label:focus {
 #memory {
     background-color: #cc241d;
     /* background-color: #9b59b6; */
+		border-radius: 5;
 }
 
 #disk {
     background-color: #b16286;
     /* background-color: #964B00; */
+		border-radius: 5;
 }
 
 #backlight {
     background-color: #90b1b1;
+		border-radius: 5;
 }
 
 #network {
@@ -208,6 +214,7 @@ label:focus {
     /* background-color: #f1c40f; */
     background-color: #d65d0e;
     color: #000000;
+		border-radius: 5;
 }
 
 #custom-pipewire {
@@ -253,6 +260,7 @@ label:focus {
 
 #tray {
     background-color: #2980b9;
+		border-radius: 5;
 }
 
 #tray > .passive {

@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 		plugin-tree-sitter-context.url = "github:pmazaitis/tree-sitter-context";
@@ -37,20 +37,28 @@
 							lix-module.nixosModules.default
 							./configuration.nix
 							# (import ./overlays)
-							home-manager.nixosModules.home-manager
-							{
-								home-manager.useGlobalPkgs = false;
-								home-manager.useUserPackages = true;
-								home-manager.extraSpecialArgs = { inherit inputs; };
-								home-manager.users.orahcio = import ./home.nix;
-								home-manager.backupFileExtension = "old_backup"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
-								# home-manager.users.ilana = import ./home_ilana.nix;
-
-								# Optionally, use home-manager.extraSpecialArgs to pass
-								# arguments to home.nix
-							}
+							# home-manager.nixosModules.home-manager
+							# {
+							# 	home-manager.useGlobalPkgs = false;
+							# 	home-manager.useUserPackages = true;
+							# 	home-manager.extraSpecialArgs = { inherit inputs; };
+							# 	home-manager.users.orahcio = import ./home.nix;
+							# 	home-manager.backupFileExtension = "old_backup"; # Adicionado para sobrepor as configurações diretas na minha home, fazendo um backup das mesmas
+							# 	# home-manager.users.ilana = import ./home_ilana.nix;
+							#
+							# 	# Optionally, use home-manager.extraSpecialArgs to pass
+							# 	# arguments to home.nix
+							# }
 						];
 					};
 				};
+
+				homeConfigurations = {
+					"orahcio" = home-manager.lib.homeManagerConfiguration {
+						pkgs = import nixpkgs { system = "x86_64-linux"; };
+						modules = [ ./home.nix ]; # Defined later
+						extraSpecialArgs = { inherit inputs; };
+          };
+        };
   		};
 }

@@ -4,16 +4,16 @@
 
 { config, pkgs, lib, inputs, ... }:
 let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
+  # nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+  #   export __NV_PRIME_RENDER_OFFLOAD=1
+  #   export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+  #   export __GLX_VENDOR_LIBRARY_NAME=nvidia
+  #   export __VK_LAYER_NV_optimus=NVIDIA_only
+  #   exec -a "$0" "$@"
+  # '';
 
 	tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  session = "${pkgs.swayfx}/bin/sway --unsupported-gpu";
+  session = "${pkgs.sway}/bin/sway"; # --unsupported-gpu";
   username = "orahcio";
 in
 {
@@ -27,7 +27,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			./nvidia.nix
+			# ./nvidia.nix
       # <home-manager/nixos>
     ];
   
@@ -74,6 +74,7 @@ in
   # Ativar a mesa digitalizadora
   hardware.opentabletdriver = {
     enable = true;
+		package = pkgs.unstable.opentabletdriver;
     daemon.enable = true;
   };
 
@@ -81,7 +82,7 @@ in
   # hardware.graphics.enable = true;
     # driSupport32Bit = true;
 
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.videoDrivers = [ "modesetting" "noveau" ];
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -145,13 +146,13 @@ in
 	# Enable sway window manager
 	# Configuração que talvez necessite no sway para montar driver por exemplo
 	security.polkit.enable = true;
-  programs.sway = {
-    enable = true;
-		package = pkgs.swayfx;
-		xwayland.enable = true;
-    wrapperFeatures.gtk = true;
-		extraOptions = [ "--unsupported-gpu" ];
-  };
+ #  programs.sway = {
+ #    enable = true;
+	# 	package = pkgs.swayfx;
+	# 	xwayland.enable = true;
+ #    wrapperFeatures.gtk = true;
+	# 	extraOptions = [ "--unsupported-gpu" ];
+ #  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -221,52 +222,19 @@ in
     # krdp
   # ];
 
-  environment.systemPackages = (with pkgs; [
+  environment.systemPackages = with pkgs; [
     wget unrar bc entr openssl dmg2img gptfdisk btop lshw pciutils sshfs
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
 		fossil # outro versionamento, alternativa ao git
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-		gparted
-    oterm
-    mpv
 		unstable.espanso-wayland
-
-    # Coisas para o sway
-		wofi
-    mako # Notificações
-		pw-volume
-		pavucontrol
-    networkmanagerapplet # Gerenciar redes
-    wpaperd # Papel de parede em slides
-    unstable.waybar # Uma barra bem legal
-		unstable.yambar
-    kitty # Terminal
-    grim # Screenshot da tela
-    slurp # Screenshot de região da tela
-    swappy # Editar screenshot
-    wl-clipboard
-		xdg-desktop-portal-wlr
-    pcmanfm # Gerenciador de arquivos
-		lxmenu-data # Para o gerenciador de arquivos
-		shared-mime-info # Para o gerenciador de arquivos
-		swayimg # Exibir imagem
 
 		# Joguinhos
 		sdlpop # Prince of Persia velhão
-
-    # Coisas do Plasma desktop
-		]) ++ (with pkgs.kdePackages; [
-			ark
-      filelight
-      # kgpg
-      # kleopatra
-      # partitionmanager
-      # kwrited
-      # ktorrent
-      # akregator
-    ]);
+		maelstrom
+		];
   
   # Pacotes de fontes do sistema
   fonts.packages = with pkgs; [
@@ -335,13 +303,6 @@ in
 
   # Mouse suport on tty
   services.gpm.enable = true;
-
-  # Ollama server para ter uma IA localmente
-  services.ollama = {
-    enable = true;
-		package = pkgs.unstable.ollama;
-    acceleration = "cuda";
-  };
 
   # Gerenciador de pacotes guix
   # talvez necessite usar `doas guix gc --verify=contents,repair`

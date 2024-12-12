@@ -51,17 +51,12 @@ exec kdeconnect-indicator
 
 gaps inner 23
 
-for_window [app_id="org.qutebrowser.qutebrowser"] floating enable
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="mpv"] border none, floating enable, resize set width 500,  sticky enable, move absolute position 1400 750
-for_window [class="Hexchat"] floating enable
 for_window [class="steam"] floating enable
-for_window [class="Com.github.needleandthread.vocal"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id=".blueman-manager-wrapped"] floating enable
-for_window [app_id="org.squidowl.halloy"] floating enable
 for_window [app_id="kitty"] blur enable
-for_window [app_id="org.kde.konsole"] blur enable
 for_window [class="steam"] workspace $wsp5
 
 seat * xcursor_theme Posy_Cursor_Black 64
