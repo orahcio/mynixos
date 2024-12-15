@@ -71,12 +71,12 @@
 	qt.platformTheme.name = "gtk";
 
 	# Tema GTK
-	gtk.theme.package = pkgs.gruvbox-gtk-theme;
-	gtk.theme.name = "Gruvbox-Light";
+	gtk.theme.package = pkgs.adwaita-qt6;# pkgs.gruvbox-gtk-theme;
+	gtk.theme.name = "Adwaita";
 
 	# Ícones
-	gtk.iconTheme.package = pkgs.gruvbox-plus-icons;
-	gtk.iconTheme.name = "Gruvbox-Plus-Dark";
+	gtk.iconTheme.package = pkgs.adwaita-icon-theme; #gruvbox-plus-icons;
+	gtk.iconTheme.name = "Adwaita";
 
 	# Cursor
 	gtk.cursorTheme.package = pkgs.posy-cursors; 
@@ -174,7 +174,7 @@
     userEmail = "orahcio@gmail.com";
   };
   
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   programs.qutebrowser = {
 		enable = true;
@@ -235,8 +235,8 @@
     thunderbird
     element-desktop
     twtxt
-    tor-browser
-    steam-run
+    # tor-browser
+    # steam-run
     pass-wayland
     rclone
 

@@ -36,7 +36,7 @@
 				{ command = "border none"; criteria.app_id = "mpv"; }
 				{ command = "resize set width 350";	criteria.app_id = "mpv"; }
 				{ command = "sticky enable";	criteria.app_id = "mpv"; }
-				{ command = "move absolute position 1500 800";	criteria.app_id = "mpv"; }
+				{ command = "move absolute position 1550 850";	criteria.app_id = "mpv"; }
 			];
 			keybindings =
 				let

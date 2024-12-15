@@ -67,9 +67,9 @@ in
 	# };
 
   # enables support for Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-	services.blueman.enable = true;
+ #  hardware.bluetooth.enable = true;
+ #  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+	# services.blueman.enable = true;
 
   # Ativar a mesa digitalizadora
   hardware.opentabletdriver = {
@@ -118,7 +118,7 @@ in
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
 	# Login em texto
 	services.greetd = {
@@ -225,15 +225,15 @@ in
   environment.systemPackages = with pkgs; [
     wget unrar bc entr openssl dmg2img gptfdisk btop lshw pciutils sshfs
     git # deixei pois o doas (substituto do suso) necessita ter o git no sistema
-		fossil # outro versionamento, alternativa ao git
+		# fossil # outro versionamento, alternativa ao git
     fastfetch # Apresentação do sistema ao abrir o terminal
     # Para usar o doas mesmo com pacotes que só usam sudo, se necesitar da tag -e não funciona
     (pkgs.writeScriptBin "sudo" ''exec doas "$@"'')
-		unstable.espanso-wayland
+		# unstable.espanso-wayland
 
 		# Joguinhos
-		sdlpop # Prince of Persia velhão
-		maelstrom
+		# sdlpop # Prince of Persia velhão
+		# maelstrom
 		];
   
   # Pacotes de fontes do sistema
@@ -251,12 +251,12 @@ in
 	programs.light.enable = true;
   
   # Para jogar via steam com java
-  programs.java.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+  # programs.java.enable = true;
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  # };
 
   # kde-connect program
   programs.kdeconnect.enable = true;
@@ -317,13 +317,13 @@ in
   # services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-	services.openssh.allowSFTP = true;
+ #  services.openssh.enable = true;
+	# services.openssh.allowSFTP = true;
 	
 	# Montar pendrives
-	services.gvfs.enable = true;
-	services.udisks2.enable = true;
-  services.devmon.enable = true;
+	# services.gvfs.enable = true;
+	# services.udisks2.enable = true;
+ #  services.devmon.enable = true;
 
 	# Rede TOR
 	services.tor = {
